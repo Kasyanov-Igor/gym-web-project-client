@@ -5,9 +5,103 @@
 }
 
 <div id="log" class="d-flex justify-content-center align-items-center">
-    <div class="text-center row col-4">
-        <button type="button" class="btn btn-primary m-2">LOGIN</button>
-        <button type="button" class="btn btn-success m-2">REGISTRATION</button>
-    </div>
+	<div class="text-center row col-4">
+		<button type="button" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-primary m-2">LOGIN</button>
+		<button type="button" data-bs-toggle="modal" data-bs-target="#registrationModal" class="btn btn-success m-2">REGISTRATION</button>
+	</div>
 </div>
 
+<div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="registrationModalLabel">Регистрация пользователя</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form id="registrationForm">
+					<div class="mb-3">
+						<label for="name" class="form-label">Имя:</label>
+						<input type="text" class="form-control" id="name" name="Name" autocomplete="name" required>
+						<div id="nameError" class="error-message"></div>
+					</div>
+
+					<div class="mb-3">
+						<label for="dateOfBirth" class="form-label">Дата рождения:</label>
+						<input type="date" class="form-control" id="dateOfBirth" name="DateOfBirth" autocomplete="dateOfBirth" required>
+						<div id="dateOfBirthError" class="error-message"></div>
+					</div>
+
+					<div class="mb-3">
+						<label for="contactPhoneNumber" class="form-label">Контактный телефон:</label>
+						<input type="tel" class="form-control" id="contactPhoneNumber" name="ContactPhoneNumber" autocomplete="contactPhoneNumber" required>
+						<div id="contactPhoneNumberError" class="error-message"></div>
+					</div>
+
+					<div class="mb-3">
+						<label for="emailAddress" class="form-label">Email:</label>
+						<input type="email" class="form-control" id="emailAddress" name="EmailAddress" autocomplete="emailAddress" required>
+						<div id="emailAddressError" class="error-message"></div>
+					</div>
+
+					<div class="mb-3">
+						<label for="gender" class="form-label">Пол:</label>
+						<select class="form-select" id="gender" name="Gender" required>
+							<option value="">Выберите пол</option>
+							<option value="M">Мужской</option>
+							<option value="F">Женский</option>
+						</select>
+						<div id="genderError" class="error-message"></div>
+					</div>
+
+					<div class="mb-3">
+						<label for="login" class="form-label">Логин:</label>
+						<input type="text" class="form-control" id="login" name="login" autocomplete="login" required>
+						<div id="loginError" class="error-message"></div>
+					</div>
+
+					<div class="mb-3">
+						<label for="password" class="form-label">Пароль:</label>
+						<input type="password" class="form-control" id="password" name="password" autocomplete="new-password" required>
+						<div id="passwordError" class="error-message"></div>
+					</div>
+
+					<div id="successMessage" class="mt-3 alert alert-success" style="display:none;"></div>
+					<div id="errorMessage" class="mt-3 alert alert-danger" style="display:none;"></div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+				<button type="submit" form="registrationForm" class="btn btn-primary">Зарегистрироваться</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="loginModalLabel">Вход в систему</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form id="loginForm">
+					<div class="mb-3">
+						<label for="loginEmail" class="form-label">Логин</label>
+						<input type="text" class="form-control" id="loginEmail" name="Login" required>
+						<div id="loginEmailError" class="error-message text-danger"></div>
+					</div>
+					<div class="mb-3">
+						<label for="loginPassword" class="form-label">Пароль</label>
+						<input type="password" class="form-control" id="loginPassword" name="Password" required>
+						<div id="loginPasswordError" class="error-message text-danger"></div>
+					</div>
+					<div id="loginErrorMessage" class="error-message text-danger mb-3" style="display: none;"></div>
+					<div id="loginSuccessMessage" class="success-message text-success mb-3" style="display: none;"></div>
+					<button type="submit" class="btn btn-primary">Войти</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
