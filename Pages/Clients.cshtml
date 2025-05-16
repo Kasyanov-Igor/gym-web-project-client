@@ -105,3 +105,79 @@
 		</div>
 	</div>
 </div>
+
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+
+@functions {
+
+	public string GetTocen()
+
+	{
+
+		return Xsrf.GetAndStoreTokens(Model.HttpContext).RequestToken;
+
+	}
+
+}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+	$(document).ready(function() {
+		$('#loginForm').on('submit', function(event) {
+			event.preventDefault(); // Предотвращаем стандартную отправку формы
+
+			var formData = $(this).serialize(); // Собираем данные формы
+
+			$.ajax({
+				url: 'http://localhost:5067/Client/login', // Адрес контроллера и метода для авторизации
+				method: 'POST',
+				dataType: 'json',
+				contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+				data: formData,
+				success: function(response) {
+					if (response.success) {
+						$('#loginSuccessMessage').text(response.message).show();
+						$('#loginModal').modal('hide'); // Закрываем модальное окно
+						window.location.reload(); // Перезагружаем страницу
+					} else {
+						$('#loginErrorMessage').text(response.message).show();
+					}
+				},
+				error: function(xhr, status, error) {
+					console.error("Ошибка:", xhr.responseText);
+					alert("Возникла ошибка при обработке вашего запроса.");
+				}
+			});
+		});
+	});
+</script>
+
+
+<script>
+		
+	$("#registrationForm").on("submit", function(event) {
+		event.preventDefault();
+
+		const formData = $(this).serialize(); // Получение всех полей формы в виде строки формата key=value
+
+		// Выполняем AJAX-запрос
+		$.ajax({
+			url: "http://localhost:5067/Client/register", // Путь на сервер для обработки регистрации
+			type: "POST",               // Тип запроса — POST
+			data: formData,             // Данные формы
+			success: function(response) {
+				if (response.success) {
+					// Успешная регистрация
+					$("#successMessage").text(response.message).show();
+					$("#registrationModal").modal("hide"); // Скрытие модала
+				} else {
+					// Ошибочная регистрация
+					$("#errorMessage").text(response.message).show();
+				}
+			},
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.error(`Ошибка AJAX: ${jqXHR.statusText}`);
+				$("#errorMessage").text("Что-то пошло не так. Попробуйте снова позже.").show();
+			}
+		});
+	});
+</script>
