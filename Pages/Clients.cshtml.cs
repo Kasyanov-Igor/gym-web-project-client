@@ -6,7 +6,7 @@ namespace GymProjectClient.Pages
 {
 	public class ClientsModel : PageModel
 	{
-		public Client client { get; set; }
+		public Client? client { get; set; }
 		public void OnGet()
 		{
 		}

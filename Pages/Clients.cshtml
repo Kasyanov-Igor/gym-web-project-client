@@ -99,7 +99,7 @@
 					</div>
 					<div id="loginErrorMessage" class="error-message text-danger mb-3" style="display: none;"></div>
 					<div id="loginSuccessMessage" class="success-message text-success mb-3" style="display: none;"></div>
-					<button type="submit" class="btn btn-primary">Войти</button>
+					<button type="submit" id="UserLogin" class="btn btn-primary">Войти</button>
 				</form>
 			</div>
 		</div>
@@ -111,7 +111,6 @@
 @functions {
 
 	public string GetTocen()
-
 	{
 
 		return Xsrf.GetAndStoreTokens(Model.HttpContext).RequestToken;
@@ -153,7 +152,6 @@
 
 
 <script>
-		
 	$("#registrationForm").on("submit", function(event) {
 		event.preventDefault();
 
@@ -179,5 +177,34 @@
 				$("#errorMessage").text("Что-то пошло не так. Попробуйте снова позже.").show();
 			}
 		});
+	});
+</script>
+
+<script>
+	let redirectToPage = (event) => {
+
+		// Выполняем AJAX запрос (если он нужен) или просто переходим на новую страницу
+		$.ajax({
+			type: "POST",
+			url: "@Url.Page("/ClientMain", "ClientMain")", // Здесь URL для AJAX
+			headers: {
+				"RequestVerificationToken": "@GetTocen()"
+			},
+			contentType: "application/json; charset=utf-8",
+			dataType: "text",
+			success: () => {
+				// Просто перенаправляем на страницу без передачи параметров
+				window.location.href = '@Url.Page("/ClientMain", "ClientMain")'; // Перейти на страницу деталей
+			},
+			error: (xhr, status, error) => {
+				console.error("Ошибка при выполнении запроса:", status, error);
+			}
+		});
+	}
+
+	document.addEventListener("DOMContentLoaded", () => {
+
+		let btn = document.getElementById('UserLogin');
+		btn.addEventListener("click", redirectToPage);
 	});
 </script>
