@@ -6,4 +6,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\gym-web-project\gym-project-business-logic\gym-project-business-logic.csproj" />
+  </ItemGroup>
+
 </Project>
