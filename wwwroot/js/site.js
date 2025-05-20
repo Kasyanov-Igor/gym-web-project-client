@@ -1,62 +1,56 @@
 ﻿// Please see documentation at https://learn.microsoft.com/aspnet/core/client-side/bundling-and-minification
-// for details on configuring this project to bundle and minify static web assets.
 
+function transitionClient(ajaxUrl, requestToken, redirectUrl, response) {
+	$.ajax({
+		type: "POST",
+		url: ajaxUrl,
+		headers: {
+			"RequestVerificationToken": requestToken
+		},
+		contentType: "application/json; charset=utf-8",
+		data: JSON.stringify({
+			Id: response.Id,
+		}),
+		success: () => {
+			console.log("AJAX запрос успешно выполнен.");
+			if (redirectUrl) {
+				window.location.href = redirectUrl;
+			} else {
+				console.warn("Отсутствует data-redirect-url для перенаправления.");
+			}
+		},
+		error: (xhr, status, error) => {
+			console.error("Ошибка при выполнении AJAX запроса:", status, error, xhr.responseText);
+		}
+	});
+}
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener('DOMContentLoaded', () => {
+
 	let btn = document.getElementById('UserLogin');
 
-	if (btn) {
-		btn.addEventListener("click", function (event) {
+	let ajaxUrl = null;
 
-			// Получаем значения из data-атрибутов кнопки, на которую кликнули
-			const ajaxUrl = this.dataset.ajaxUrl;       // URL для AJAX
-			const redirectUrl = this.dataset.redirectUrl; // URL для перенаправления
-			const requestToken = this.dataset.requestToken; // Токен
+	let redirectUrl = null;
 
-			if (!ajaxUrl || !requestToken) {
-				console.error("Отсутствуют необходимые data-атрибуты на кнопке:", this);
-				return; // Прекращаем выполнение, если данных нет
-			}
+	let requestToken = null;
 
-			// Выполняем AJAX запрос (если он нужен перед перенаправлением)
-			$.ajax({
-				type: "POST",
-				url: ajaxUrl, // Используем URL из data-атрибута
-				headers: {
-					"RequestVerificationToken": requestToken // Используем токен из data-атрибута
-				},
-				contentType: "application/json; charset=utf-8",
-				dataType: "text", // или "json", в зависимости от ответа сервера
-				success: () => {
-					console.log("AJAX запрос успешно выполнен.");
-					// Просто перенаправляем на страницу без передачи параметров в URL (на стороне клиента)
-					if (redirectUrl) {
-						window.location.href = redirectUrl;
-					} else {
-						console.warn("Отсутствует data-redirect-url для перенаправления.");
-						// Возможно, здесь нужно что-то другое, если нет URL для редиректа
-					}
-				},
-				error: (xhr, status, error) => {
-					console.error("Ошибка при выполнении AJAX запроса:", status, error, xhr.responseText);
-					// Можно добавить отображение сообщения об ошибке пользователю
-				}
-			});
+	if (btn != null) {
+		btn.addEventListener("click", function () {
+
+			ajaxUrl = this.dataset.ajaxUrl;       // URL для AJAX
+			redirectUrl = this.dataset.redirectUrl; // URL для перенаправления
+			requestToken = this.dataset.requestToken; // Токен
 		});
-	} else {
-		console.warn("Элемент с ID 'UserLogin' не найден на странице.");
 	}
-});
 
-
-$(document).ready(function () {
 	$('#loginForm').on('submit', function (event) {
-		event.preventDefault(); // Предотвращаем стандартную отправку формы
+		event.preventDefault();
 
 		var formData = $(this).serialize(); // Собираем данные формы
 
 		$.ajax({
-			url: 'http://localhost:5067/Client/login', // Адрес контроллера и метода для авторизации
+			url: 'http://localhost:5067/Client/login',
 			method: 'POST',
 			dataType: 'json',
 			contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
@@ -64,15 +58,11 @@ $(document).ready(function () {
 			success: function (response) {
 				if (response.success) {
 					$('#loginSuccessMessage').text(response.message).show();
-					$('#loginErrorMessage').hide(); // Скрываем сообщение об ошибке, если оно было видно
-					$('#loginModal').modal('hide'); // Закрываем модальное окно (требуется Bootstrap или аналогичная библиотека) // Подождем немного перед перезагрузкой, чтобы модальное окно успело закрыться
-					setTimeout(function () {
-						window.location.reload(); // Перезагружаем страницу
-					}, 500); // Задержка 500 миллисекунд
-
 				} else {
 					$('#loginErrorMessage').text(response.message).show();
-					$('#loginSuccessMessage').hide(); // Скрываем сообщение об успехе
+					$('#loginSuccessMessage').hide();
+
+					transitionClient(ajaxUrl, requestToken, redirectUrl, response);
 				}
 			},
 			error: function (xhr, status, error) {
@@ -84,7 +74,7 @@ $(document).ready(function () {
 						if (errorResponse.message) {
 							errorMessage = errorResponse.message; // Если сервер вернул ошибку в JSON с полем message
 						} else {
-							errorMessage = xhr.responseText; // Если сервер вернул простой текст ошибки
+							errorMessage = "Пользователя с таким логином не существует !"; // Если сервер вернул простой текст ошибки
 						}
 					} catch (e) {
 						errorMessage = xhr.responseText; // Если ответ не JSON
@@ -98,16 +88,13 @@ $(document).ready(function () {
 });
 
 
-$(document).ready(function () { // Можно использовать один $(document).ready для всего файла
+document.addEventListener('DOMContentLoaded', () => {
 	$("#registrationForm").on("submit", function (event) {
 		event.preventDefault();
 
 		const formData = $(this).serialize(); // Получение всех полей формы в виде строки формата key=value
 
-		// Выполняем AJAX-запрос
 		$.ajax({
-			// !!! Важно: Этот URL также хардкодный!
-			// Рассмотрите возможность передачи его через data-атрибут, как обсуждалось ранее.
 			url: "http://localhost:5067/Client/register", // Путь на сервер для обработки регистрации
 			type: "POST",               // Тип запроса — POST
 			data: formData,             // Данные формы
@@ -117,12 +104,7 @@ $(document).ready(function () { // Можно использовать один 
 					// Успешная регистрация
 					$("#successMessage").text(response.message).show();
 					$("#errorMessage").hide(); // Скрываем сообщение об ошибке
-					$("#registrationModal").modal("hide"); // Скрытие модала (требуется Bootstrap или аналогичная библиотека) // Опционально: что-то сделать после закрытия модала, например, показать сообщение об успехе на странице
-					// или автоматически перейти на страницу логина/главную
-					// setTimeout(function() { /* Ваш код здесь */ }, 500);
-
 				} else {
-					// Ошибочная регистрация
 					$("#errorMessage").text(response.message).show();
 					$("#successMessage").hide(); // Скрываем сообщение об успехе
 				}
