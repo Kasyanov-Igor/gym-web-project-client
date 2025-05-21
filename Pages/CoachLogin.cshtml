@@ -1,0 +1,132 @@
+﻿@page
+@model GymProjectClient.Pages.CoachLoginModel
+@{
+	ViewData["Title"] = "Coach";
+}
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6 text-black">
+
+                <div class="px-5 ms-xl-4">
+                    <i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
+                </div>
+
+                <div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+
+				<form id="loginFormCoach" style="width: 23rem;">
+
+                        <h3 class="fw-normal mb-3 pb-3" style="letter-spacing: 1px;">Login</h3>
+
+                        <div data-mdb-input-init class="form-outline mb-4">
+						<input type="text" id="form2Example18" name="Login" class="form-control form-control-lg" />
+                            <label class="form-label" for="form2Example18">Login</label>
+                        </div>
+
+                        <div data-mdb-input-init class="form-outline mb-4">
+						<input type="password" id="form2Example28" name="Password" class="form-control form-control-lg" />
+                            <label class="form-label" for="form2Example28">Password</label>
+                        </div>
+
+                        <div class="pt-1 mb-4">
+						<button data-mdb-button-init data-mdb-ripple-init type="submit" class="btn btn-danger" type="button">Login</button>
+                        </div>
+					<p>Don't have an account? <a href="#!" data-bs-toggle="modal" data-bs-target="#registrationModal" class="link-info">Register here</a></p>
+                    </form>
+                </div>
+
+            </div>
+            <div class="col-sm-6 px-0 d-none d-sm-block">
+                <img src="~/images/cardCoach.webp" id="loginImage"
+                 alt="Login image" class="w-100 rounded">
+            </div>
+        </div>
+    </div>
+
+<div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="registrationModalLabel">Регистрация пользователя</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form id="registrationFormCoach">
+					<div class="mb-3">
+						<label for="name" class="form-label">Имя:</label>
+						<input type="text" class="form-control" id="name" name="FullName" autocomplete="name" required>
+						<div id="nameError" class="error-message"></div>
+					</div>
+
+					<div class="mb-3">
+						<label for="dateOfBirth" class="form-label">Дата рождения:</label>
+						<input type="date" class="form-control" id="dateOfBirth" name="DateOfBirth" autocomplete="dateOfBirth" required>
+						<div id="dateOfBirthError" class="error-message"></div>
+					</div>
+
+					<div class="mb-3">
+						<label for="contactPhoneNumber" class="form-label">Контактный телефон:</label>
+						<input type="tel" class="form-control" id="contactPhoneNumber" name="PhoneNumber" autocomplete="contactPhoneNumber" required>
+						<div id="contactPhoneNumberError" class="error-message"></div>
+					</div>
+
+					<div class="mb-3">
+						<label for="emailAddress" class="form-label">Email:</label>
+						<input type="email" class="form-control" id="emailAddress" name="Email" autocomplete="emailAddress" required>
+						<div id="emailAddressError" class="error-message"></div>
+					</div>
+
+					<div class="mb-3">
+						<label for="gender" class="form-label">Пол:</label>
+						<select class="form-select" id="gender" name="Gender" required>
+							<option value="">Выберите пол</option>
+							<option value="M">Мужской</option>
+							<option value="F">Женский</option>
+						</select>
+						<div id="genderError" class="error-message"></div>
+					</div>
+					<div class="mb-3">
+						<label for="Specialization" class="form-label">Пол:</label>
+						<select class="form-select" id="Specialization" name="Specialization" required>
+							<option value="">Выберите специализацию</option>
+							<option value="PersonalTraining">Personal Training</option>
+							<option value="Dancing">Dancing</option>
+							<option value="Yoga">Yoga</option>
+						</select>
+						<div id="SpecializationError" class="error-message"></div>
+					</div>
+
+					<div class="mb-3">
+						<label for="Status" class="form-label">Пол:</label>
+						<select class="form-select" id="Status" name="Status" required>
+							<option value="">Выберите статус</option>
+							<option value="Trainer">Trainer</option>
+							<option value="HeadCoach">HeadCoach</option>
+							<option value="SeniorCoach">SeniorCoach</option>
+						</select>
+						<div id="StatusError" class="error-message"></div>
+					</div>
+
+					<div class="mb-3">
+						<label for="login" class="form-label">Логин:</label>
+						<input type="text" class="form-control" id="login" name="login" autocomplete="login" required>
+						<div id="loginError" class="error-message"></div>
+					</div>
+
+					<div class="mb-3">
+						<label for="password" class="form-label">Пароль:</label>
+						<input type="password" class="form-control" id="password" name="password" autocomplete="new-password" required>
+						<div id="passwordError" class="error-message"></div>
+					</div>
+
+					<div id="successMessage" class="mt-3 alert alert-success" style="display:none;"></div>
+					<div id="errorMessage" class="mt-3 alert alert-danger" style="display:none;"></div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+				<button type="submit" form="registrationFormCoach" class="btn btn-primary">Зарегистрироваться</button>
+			</div>
+		</div>
+	</div>
+</div>
