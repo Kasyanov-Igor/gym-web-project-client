@@ -8,13 +8,11 @@ function transitionClient(ajaxUrl, requestToken, redirectUrl, responseId) {
 			"RequestVerificationToken": requestToken
 		},
 		contentType: "application/json; charset=utf-8",
-		data: JSON.stringify({
-			Id: responseId,
-		}),
+		data: responseId,
 		success: () => {
 			console.log("AJAX запрос успешно выполнен.");
 			if (redirectUrl) {
-				window.location.href = redirectUrl;
+				//window.location.href = redirectUrl;
 			} else {
 				console.warn("Отсутствует data-redirect-url для перенаправления.");
 			}

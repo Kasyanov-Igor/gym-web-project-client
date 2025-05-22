@@ -7,6 +7,7 @@ namespace GymProjectClient.Pages
     {
         public void OnGet()
         {
+            RedirectToPage("/CoachWorkData");
         }
     }
 }

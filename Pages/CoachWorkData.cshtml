@@ -1,8 +1,19 @@
 ﻿@page
 @model GymProjectClient.Pages.CoachWorkDataModel
 @{
+    var coach = @Model.Coach;
 }
 
 <div>
-	<p>Welcome br</p>
+    @if (coach != null)
+    {
+        <h3>Информация о тренере:</h3>
+        <p><strong>ID:</strong> @coach.Id</p>
+        <p><strong>Имя:</strong> @coach.FullName</p>
+        <p><strong>Специализация:</strong> @coach.Specialization</p>
+    }
+    else
+    {
+        <p>EROR</p>
+    }
 </div>
