@@ -29,7 +29,10 @@
                         </div>
 
                         <div class="pt-1 mb-4">
-						<button data-mdb-button-init data-mdb-ripple-init type="submit" class="btn btn-danger" type="button">Login</button>
+						<button data-mdb-button-init data-mdb-ripple-init type="submit" id="loginCouch" class="btn btn-danger"
+								data-ajax-url="@Url.Page("/CoachWorkData", "CoachWorkData")"
+								data-redirect-url="@Url.Page("/CoachWorkData", "CoachWorkData")"
+								data-request-token="@GetTocen()">Login</button>
                         </div>
 					<p>Don't have an account? <a href="#!" data-bs-toggle="modal" data-bs-target="#registrationModal" class="link-info">Register here</a></p>
                     </form>
@@ -130,3 +133,14 @@
 		</div>
 	</div>
 </div>
+@inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+
+@functions {
+
+	public string? GetTocen()
+	{
+		return Xsrf.GetAndStoreTokens(Model.HttpContext).RequestToken;
+	}
+}
+
+<script src="~/js/site.js" asp-append-version="true"></script>
