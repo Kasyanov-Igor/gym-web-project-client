@@ -1,8 +1,14 @@
 ﻿@page
+@using gym_project_business_logic.Model
 @model GymProjectClient.Pages.CoachWorkDataModel
 @{
 }
 
 <div>
-	<p>Welcome br</p>
+
+        <h3>Информация о тренере:</h3>
+        <p><strong>ID:</strong> @Model.Coach.Id</p>
+        <p><strong>Имя:</strong> @Model.Coach.FullName</p>
+        <p><strong>Специализация:</strong> @Model.Coach.Specialization</p>
+
 </div>
