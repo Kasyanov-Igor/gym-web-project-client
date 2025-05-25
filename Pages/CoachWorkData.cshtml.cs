@@ -8,12 +8,16 @@ namespace GymProjectClient.Pages
 	{
 		public Coach? Coach { get; set; }
 
+		public List<Gym> Gyms { get; set; }
+
 		private HttpClient _httpClient = new HttpClient();
 
 		public void OnGet(string id)
 		{
 			this.Coach = this.GetCoachByIdAsync(Convert.ToInt32(id)).Result;
-		}
+
+            this.Gyms = this.GetGyms().Result;
+        }
 
 		public async Task<Coach> GetCoachByIdAsync(int id)
 		{
@@ -22,5 +26,14 @@ namespace GymProjectClient.Pages
 
 			return coachNew;
 		}
+
+		public async Task<List<Gym>?> GetGyms()
+		{
+			var response = await _httpClient.GetAsync("http://localhost:5067/Gyms");
+
+			var gyms = await response.Content.ReadFromJsonAsync<List<Gym>>();
+			return gyms;
+		}
+
 	}
 }
