@@ -6,9 +6,11 @@
 
 <div>
 
-        <h3>Информация о тренере:</h3>
-        <p><strong>ID:</strong> @Model.Coach.Id</p>
-        <p><strong>Имя:</strong> @Model.Coach.FullName</p>
+        <h3>@Model.Coach.FullName Welicome</h3>
         <p><strong>Специализация:</strong> @Model.Coach.Specialization</p>
+        @foreach(Gym gym in Model.Gyms)
+        {
+        <p>@gym.Id зал - @gym.Name </p>
+        }
 
 </div>
