@@ -6,13 +6,21 @@ namespace GymProjectClient.Pages
 {
 	public class CoachWorkDataModel : PageModel
 	{
-		public Coach? Coach { get; set; }
+        public CoachWorkDataModel()
+		{
+			this.Date = DateTime.Now;
+		}
+        public Coach? Coach { get; set; }
 
 		public List<Gym> Gyms { get; set; }
 
+		public DateTime Date;
+
 		private HttpClient _httpClient = new HttpClient();
 
-		public void OnGet(string id)
+        public string ErrorMessage { get; set; }
+
+        public void OnGet(string id)
 		{
 			this.Coach = this.GetCoachByIdAsync(Convert.ToInt32(id)).Result;
 
@@ -34,6 +42,5 @@ namespace GymProjectClient.Pages
 			var gyms = await response.Content.ReadFromJsonAsync<List<Gym>>();
 			return gyms;
 		}
-
-	}
+    }
 }

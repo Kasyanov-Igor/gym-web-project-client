@@ -25,7 +25,6 @@ namespace GymProjectClient.Pages
 
 		public async Task<IActionResult> OnPostAsync()
 		{
-			// Базовая проверка модели (например, если поля помечены как [Required])
 			if (!ModelState.IsValid)
 			{
 				return Page(); // Возвращаем текущую страницу с ошибками валидации
