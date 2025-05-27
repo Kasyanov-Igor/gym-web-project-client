@@ -9,7 +9,6 @@ namespace GymProjectClient.Pages
 	{
 		private readonly HttpClient _httpClient;
 
-		// Свойства для привязки данных из формы
 		[BindProperty]
 		public string Login { get; set; }
 
@@ -36,7 +35,7 @@ namespace GymProjectClient.Pages
 				{ "Password", Password }
 			};
 
-			var content = new FormUrlEncodedContent(loginData); // API ожидает [FromForm]
+			var content = new FormUrlEncodedContent(loginData);
 
 			try
 			{
@@ -44,16 +43,14 @@ namespace GymProjectClient.Pages
 
 				if (apiResponse.IsSuccessStatusCode)
 				{
-
 					var coach = await apiResponse.Content.ReadFromJsonAsync<Coach>();
 
-					if (coach != null)
+                    if (coach != null)
 					{
 						return RedirectToPage("/CoachWorkData", new { id = coach.Id });
 					}
 					else
 					{
-						// Неожиданная ситуация: API вернул успех, но объект Coach пустой
 						ErrorMessage = "Login successful, but coach data was not returned.";
 						return Page();
 					}

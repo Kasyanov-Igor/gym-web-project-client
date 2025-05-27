@@ -15,9 +15,9 @@ namespace GymProjectClient.Pages
         }
         public Coach? Coach { get; set; }
 
-		public List<Gym>? Gyms { get; set; }
+		public List<Gym> Gyms { get; set; }
 
-		public List<Workout>? Workouts { get; set; }
+		public List<Workout> Workouts { get; set; }
 
 		public DateTime Date;
 
@@ -25,13 +25,13 @@ namespace GymProjectClient.Pages
 
         public string ErrorMessage { get; set; }
 
-        public void OnGet(string id)
+        public async Task OnGet(string id)
 		{
-			this.Coach = this.GetCoachByIdAsync(Convert.ToInt32(id)).Result;
+			this.Coach = await this.GetCoachByIdAsync(Convert.ToInt32(id));
 
-            this.Gyms = this.GetGyms().Result;
+            this.Gyms = await this.GetGyms();
 
-			this.Workouts = this.GetWorkouts().Result;
+			this.Workouts = await this.GetWorkouts();
         }
 
 		public async Task<Coach> GetCoachByIdAsync(int id)

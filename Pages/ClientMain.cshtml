@@ -1,8 +1,218 @@
 ﻿@page
+@using System.Globalization
 @model GymProjectClient.Pages.ClientMainModel
 @{
 }
 
+<h1>@Model.Client.Name Welicome</h1>
+
 <div>
- <p>HELLO</p>
+	<table class="bg-light w-100">
+		<thead>
+			<tr>
+				<th>Время / Дата</th>
+				<th>@Model.Date.ToString("dd MMMM", new CultureInfo("ru-RU"))<br>@Model.Date.ToString("dddd", new CultureInfo("ru-RU"))</th>
+				<th>@Model.Date.AddDays(1).ToString("dd MMMM", new CultureInfo("ru-RU"))<br>@Model.Date.AddDays(1).ToString("dddd", new CultureInfo("ru-RU"))</th>
+				<th>@Model.Date.AddDays(2).ToString("dd MMMM", new CultureInfo("ru-RU"))<br>@Model.Date.AddDays(2).ToString("dddd", new CultureInfo("ru-RU"))</th>
+				<th>@Model.Date.AddDays(3).ToString("dd MMMM", new CultureInfo("ru-RU"))<br>@Model.Date.AddDays(3).ToString("dddd", new CultureInfo("ru-RU"))</th>
+				<th>@Model.Date.AddDays(4).ToString("dd MMMM", new CultureInfo("ru-RU"))<br>@Model.Date.AddDays(4).ToString("dddd", new CultureInfo("ru-RU"))</th>
+				<th>@Model.Date.AddDays(5).ToString("dd MMMM", new CultureInfo("ru-RU"))<br>@Model.Date.AddDays(5).ToString("dddd", new CultureInfo("ru-RU"))</th>
+				<th>@Model.Date.AddDays(6).ToString("dd MMMM", new CultureInfo("ru-RU"))<br>@Model.Date.AddDays(6).ToString("dddd", new CultureInfo("ru-RU"))</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>11:00</td>
+				<td class="time-slot">
+					<div class="availability-input today-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input second-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input third-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input fourth-day-date">
+
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input fifth-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input sixth-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input seventh-day-date">
+						
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>14:00</td>
+				<td class="time-slot">
+					<div class="availability-input today-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input second-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input third-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input fourth-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input fifth-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input sixth-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input seventh-day-date">
+						
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>17:00</td>
+				<td class="time-slot">
+					<div class="availability-input today-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input second-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input third-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input fourth-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input fifth-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input sixth-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input seventh-day-date">
+						
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>19:00</td>
+				<td class="time-slot">
+					<div class="availability-input today-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input second-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input third-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input fourth-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input fifth-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input sixth-day-date">
+						
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input seventh-day-date">
+						
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
 </div>
+
+<style>
+	th, td {
+		border: 1px solid #ddd;
+		padding: 12px;
+		text-align: center;
+		vertical-align: middle;
+	}
+
+	th {
+		background-color: #e0e0e0;
+		color: #333;
+		font-weight: bold;
+		white-space: nowrap;
+	}
+
+	td:first-child { /* Стиль для колонки времени */
+		background-color: #f0f0f0;
+		font-weight: bold;
+		color: #555;
+	}
+
+	.time-slot {
+		height: 100px;
+		transition: background-color 0.2s ease;
+	}
+
+		.time-slot:hover {
+			background-color: #e9f7ef; /* Легкий эффект при наведении */
+		}
+
+	.available {
+		background-color: #d4edda; /* Пример стиля для "свободно" */
+	}
+
+	.booked {
+		background-color: #f8d7da; /* Пример стиля для "занято" */
+	}
+
+</style>
