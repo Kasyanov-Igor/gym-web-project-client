@@ -1,6 +1,8 @@
 ﻿using gym_project_business_logic.Model;
+using GymProjectClient.Pages.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Model.Entities;
 
 namespace GymProjectClient.Pages
 {
@@ -9,14 +11,17 @@ namespace GymProjectClient.Pages
         public CoachWorkDataModel()
 		{
 			this.Date = DateTime.Now;
-		}
+			this._crudService = new CrudService();
+        }
         public Coach? Coach { get; set; }
 
-		public List<Gym> Gyms { get; set; }
+		public List<Gym>? Gyms { get; set; }
+
+		public List<Workout>? Workouts { get; set; }
 
 		public DateTime Date;
 
-		private HttpClient _httpClient = new HttpClient();
+		private CrudService _crudService;
 
         public string ErrorMessage { get; set; }
 
@@ -25,22 +30,27 @@ namespace GymProjectClient.Pages
 			this.Coach = this.GetCoachByIdAsync(Convert.ToInt32(id)).Result;
 
             this.Gyms = this.GetGyms().Result;
+
+			this.Workouts = this.GetWorkouts().Result;
         }
 
 		public async Task<Coach> GetCoachByIdAsync(int id)
 		{
-			var response = await this._httpClient.GetAsync($"http://localhost:5067/Coach/1");
-			var coachNew = await response.Content.ReadFromJsonAsync<Coach>();
-
-			return coachNew;
+			return await this._crudService.GetEntityByIdAsync<Coach>(id, "Coach");
 		}
 
 		public async Task<List<Gym>?> GetGyms()
 		{
-			var response = await _httpClient.GetAsync("http://localhost:5067/Gyms");
+			string url = "http://localhost:5067/Gyms";
 
-			var gyms = await response.Content.ReadFromJsonAsync<List<Gym>>();
-			return gyms;
-		}
+            return await this._crudService.GetListEntity<Gym>(url);
+        }
+
+        public async Task<List<Workout>?> GetWorkouts()
+        {
+            string url = "http://localhost:5067/Workout";
+
+            return await this._crudService.GetListEntity<Workout>(url);
+        }
     }
 }
