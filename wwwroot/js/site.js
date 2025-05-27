@@ -129,7 +129,100 @@ document.addEventListener('DOMContentLoaded', () => {
 	});
 });
 
+document.querySelectorAll('.today-date button').forEach(button => {
+	button.addEventListener('click', function () {
+		// Получаем текущее время
+		let currentDate = new Date();
+		let time = this.closest('td').previousElementSibling.textContent.trim();
+		let formattedDateTime = `${currentDate.toISOString().split('T')[0]} ${time}`; // Форматируем дату и время
 
+		document.querySelector('input[name="BookingTime"]').value = formattedDateTime;
+	});
+});
+
+document.querySelectorAll('.second-day-date button').forEach(button => {
+	button.addEventListener('click', function () {
+		let currentDate = new Date();
+
+		currentDate.setDate(currentDate.getDate() + 1); // Плюс 1 день
+
+		const time = this.closest('td').previousElementSibling.previousElementSibling.textContent.trim();
+
+		let formattedDateTime = `${currentDate.toISOString().split('T')[0]} ${time}`; // Форматируем дату и время
+
+		document.querySelector('input[name="BookingTime"]').value = formattedDateTime;
+	});
+});
+
+document.querySelectorAll('.third-day-date button').forEach(button => {
+	button.addEventListener('click', function () {
+		let currentDate = new Date();
+
+		currentDate.setDate(currentDate.getDate() + 2);
+
+		const time = this.closest('td').previousElementSibling.previousElementSibling.previousElementSibling.textContent.trim();
+
+		let formattedDateTime = `${currentDate.toISOString().split('T')[0]} ${time}`; // Форматируем дату и время
+
+		document.querySelector('input[name="BookingTime"]').value = formattedDateTime;
+	});
+});
+
+document.querySelectorAll('.fourth-day-date button').forEach(button => {
+	button.addEventListener('click', function () {
+		let currentDate = new Date();
+
+		currentDate.setDate(currentDate.getDate() + 3);
+
+		const time = this.closest('td').previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent.trim();
+
+		let formattedDateTime = `${currentDate.toISOString().split('T')[0]} ${time}`; // Форматируем дату и время
+
+		document.querySelector('input[name="BookingTime"]').value = formattedDateTime;
+	});
+});
+
+document.querySelectorAll('.fifth-day-date button').forEach(button => {
+	button.addEventListener('click', function () {
+		let currentDate = new Date();
+
+		currentDate.setDate(currentDate.getDate() + 4);
+
+		const time = this.closest('td').previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent.trim();
+
+		let formattedDateTime = `${currentDate.toISOString().split('T')[0]} ${time}`; // Форматируем дату и время
+
+		document.querySelector('input[name="BookingTime"]').value = formattedDateTime;
+	});
+});
+
+document.querySelectorAll('.sixth-day-date button').forEach(button => {
+	button.addEventListener('click', function () {
+		let currentDate = new Date();
+
+		currentDate.setDate(currentDate.getDate() + 5);
+
+		const time = this.closest('td').previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent.trim();
+
+		let formattedDateTime = `${currentDate.toISOString().split('T')[0]} ${time}`; // Форматируем дату и время
+
+		document.querySelector('input[name="BookingTime"]').value = formattedDateTime;
+	});
+});
+
+document.querySelectorAll('.seventh-day-date button').forEach(button => {
+	button.addEventListener('click', function () {
+		let currentDate = new Date();
+
+		currentDate.setDate(currentDate.getDate() + 6);
+
+		const time = this.closest('td').previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.textContent.trim();
+
+		let formattedDateTime = `${currentDate.toISOString().split('T')[0]} ${time}`; // Форматируем дату и время
+
+		document.querySelector('input[name="BookingTime"]').value = formattedDateTime;
+	});
+});
 
 
 
