@@ -4,10 +4,57 @@
 	ViewData["Title"] = "Client";
 }
 
-<div id="log" class="d-flex justify-content-center align-items-center">
-	<div class="text-center row col-4">
-		<button type="button" data-bs-toggle="modal" data-bs-target="#loginModal" class="btn btn-primary m-2">LOGIN</button>
-		<button type="button" data-bs-toggle="modal" data-bs-target="#registrationModal" class="btn btn-success m-2">REGISTRATION</button>
+
+
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-sm-6 text-black">
+
+			<div class="px-5 ms-xl-4">
+				<i class="fas fa-crow fa-2x me-3 pt-5 mt-xl-4" style="color: #709085;"></i>
+			</div>
+
+			<div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
+				<form id="loginFormCoach" method="post">
+
+					<h3 class="mb-4">Вход в личный кабинет </h3>
+
+					@if (!string.IsNullOrEmpty(Model.ErrorMessage))
+					{
+						<div class="alert alert-danger" role="alert">
+							@Model.ErrorMessage
+						</div>
+					}
+
+					<div data-mdb-input-init class="form-outline mb-4">
+						<input type="text" id="form2Example18" asp-for="Login" class="form-control form-control-lg" />
+						<label class="form-label" for="form2Example18">Логин</label>
+						<span asp-validation-for="Login" class="text-danger"></span>
+					</div>
+
+					<div data-mdb-input-init class="form-outline mb-4">
+						<input type="password" id="form2Example28" asp-for="Password" class="form-control form-control-lg" />
+						<label class="form-label" for="form2Example28">Пароль</label>
+						<span asp-validation-for="Password" class="text-danger"></span>
+					</div>
+
+					<div class="pt-1 mb-4">
+						<button data-mdb-button-init data-mdb-ripple-init type="submit" id="loginCouch" class="btn btn-danger">Войти</button>
+					</div>
+					<p>У вас нет аккаунта? <a href="#!" data-bs-toggle="modal" data-bs-target="#registrationModal" class="link-info">Зарегистрироваться здесь</a></p>
+				</form>
+			</div>
+		</div>
+		<div class="col-sm-6 px-0 d-none d-sm-block">
+			<img src="~/images/ClientLogin.webp" id="loginImage"
+				 alt="Login image" class="w-100 rounded">
+		</div>
+		<div class="col-lg-6 d-flex align-items-center gradient-custom-2">
+			<div class="px-3 py-4 p-md-5 mx-md-4">
+				<h4 class="mb-4">Мы больше, чем просто компания</h4>
+				<p class="small mb-0">Присоединяйтесь к нашему сообществу тренеров и клиентов, чтобы улучшить ваш спортивный опыт и достичь новых вершин.</p>
+			</div>
+		</div>
 	</div>
 </div>
 
@@ -73,37 +120,6 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
 				<button type="submit" form="registrationForm" class="btn btn-primary">Зарегистрироваться</button>
-			</div>
-		</div>
-	</div>
-</div>
-
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
-	<div class="modal-dialog">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="loginModalLabel">Вход в систему</h5>
-				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-			</div>
-			<div class="modal-body">
-				<form id="loginForm">
-					<div class="mb-3">
-						<label for="loginEmail" class="form-label">Логин</label>
-						<input type="text" class="form-control" id="loginEmail" name="Login" required>
-						<div id="loginEmailError" class="error-message text-danger"></div>
-					</div>
-					<div class="mb-3">
-						<label for="loginPassword" class="form-label">Пароль</label>
-						<input type="password" class="form-control" id="loginPassword" name="Password" required>
-						<div id="loginPasswordError" class="error-message text-danger"></div>
-					</div>
-					<div id="loginErrorMessage" class="error-message text-danger mb-3" style="display: none;"></div>
-					<div id="loginSuccessMessage" class="success-message text-success mb-3" style="display: none;"></div>
-					<button type="submit" id="UserLogin" class="btn btn-primary"
-							data-ajax-url="@Url.Page("/ClientMain", "ClientMain")"
-							data-redirect-url="@Url.Page("/ClientMain", "ClientMain")"
-							data-request-token="@GetTocen()">Войти</button>
-				</form>
 			</div>
 		</div>
 	</div>
