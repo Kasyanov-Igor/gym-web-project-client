@@ -1,7 +1,12 @@
 ﻿@page
 @using System.Globalization
+@using Model.Entities
 @model GymProjectClient.Pages.ClientMainModel
 @{
+	DateTime dateNow11 = new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 11, 0, 0);
+	DateTime dateNow14 = new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 14, 0, 0);
+	DateTime dateNow17 = new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 17, 0, 0);
+	DateTime dateNow19 = new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 19, 0, 0);
 }
 
 <h1>@Model.Client.Name Welicome</h1>
@@ -24,158 +29,679 @@
 			<tr>
 				<td>11:00</td>
 				<td class="time-slot">
-					<div class="availability-input today-date">
-						
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input second-day-date">
-						
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input third-day-date">
-						
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input fourth-day-date">
+					<div class="availability-input">
 
+						@if (Model.Workouts!= null)
+						{ 
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 11, 0, 0))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input fifth-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 11, 0, 0).AddDays(1))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input sixth-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 11, 0, 0).AddDays(2))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input seventh-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 11, 0, 0).AddDays(3))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 11, 0, 0).AddDays(4))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 11, 0, 0).AddDays(5))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
+					</div>
+				</td>
+				<td class="time-slot">
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 11, 0, 0).AddDays(6))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<td>14:00</td>
 				<td class="time-slot">
-					<div class="availability-input today-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 14, 0, 0))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input second-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 14, 0, 0).AddDays(1))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input third-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 14, 0, 0).AddDays(2))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input fourth-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 14, 0, 0).AddDays(3))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input fifth-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 14, 0, 0).AddDays(4))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input sixth-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 14, 0, 0).AddDays(5))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input seventh-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 14, 0, 0).AddDays(6))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<td>17:00</td>
 				<td class="time-slot">
-					<div class="availability-input today-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 17, 0, 0))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input second-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 17, 0, 0).AddDays(1))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input third-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 17, 0, 0).AddDays(2))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input fourth-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 17, 0, 0).AddDays(3))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input fifth-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 17, 0, 0).AddDays(4))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input sixth-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 17, 0, 0).AddDays(5))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input seventh-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 17, 0, 0).AddDays(6))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 			</tr>
 			<tr>
 				<td>19:00</td>
 				<td class="time-slot">
-					<div class="availability-input today-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 19, 0, 0))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input second-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 19, 0, 0).AddDays(1))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input third-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 19, 0, 0).AddDays(2))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input fourth-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 19, 0, 0).AddDays(3))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input fifth-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 19, 0, 0).AddDays(4))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input sixth-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 19, 0, 0).AddDays(5))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 				<td class="time-slot">
-					<div class="availability-input seventh-day-date">
-						
+					<div class="availability-input">
+						@if (Model.Workouts != null)
+						{
+							foreach (Workout work in Model.Workouts)
+							{
+								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 19, 0, 0).AddDays(6))
+								{
+									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										<div class="card-body">
+											<h5 class="card-title">@work.Title</h5>
+											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
+											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+										</div>
+									</div>
+								}
+							}
+						}
 					</div>
 				</td>
 			</tr>
 		</tbody>
 	</table>
 </div>
+
+<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="eventModalLabel">Детали записи</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+			</div>
+			<div class="modal-body">
+				<p><strong>Вид занятия:</strong> <span id="modalTitle"></span></p>
+				<p><strong>Тренер:</strong> <span id="modalCoach"></span></p>
+				<p><strong>Длительность:</strong> <span id="modalDuration"></span> минут</p>
+				<p><strong>Зал:</strong> <span id="modalGym"></span></p>
+				<p><strong>Описание:</strong> <span id="modalDescription"></span></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+@section Scripts {
+	<script>
+		var eventModal = document.getElementById('eventModal');
+		eventModal.addEventListener('show.bs.modal', function (event) {
+		  // Кнопка (карточка), которая вызвала модальное окно
+		  var button = event.relatedTarget;
+		  // Получаем данные из атрибутов data-*
+		  var title = button.getAttribute('data-title');
+		  var coach = button.getAttribute('data-coach');
+		  var duration = button.getAttribute('data-duration');
+		  var gym = button.getAttribute('data-gym');
+		  var description = button.getAttribute('data-description');
+
+		  // Находим элементы модального окна и вставляем данные
+		  eventModal.querySelector('#modalTitle').textContent = title;
+		  eventModal.querySelector('#modalCoach').textContent = coach;
+		  eventModal.querySelector('#modalDuration').textContent = duration;
+		  eventModal.querySelector('#modalGym').textContent = gym;
+		  eventModal.querySelector('#modalDescription').textContent = description;
+		});
+	</script>
+}
 
 <style>
 	th, td {
