@@ -3,10 +3,6 @@
 @using Model.Entities
 @model GymProjectClient.Pages.ClientMainModel
 @{
-	DateTime dateNow11 = new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 11, 0, 0);
-	DateTime dateNow14 = new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 14, 0, 0);
-	DateTime dateNow17 = new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 17, 0, 0);
-	DateTime dateNow19 = new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 19, 0, 0);
 }
 
 <h1>@Model.Client.Name Welicome</h1>
@@ -37,13 +33,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 11, 0, 0))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -59,13 +55,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 11, 0, 0).AddDays(1))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -81,13 +77,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 11, 0, 0).AddDays(2))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -103,13 +99,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 11, 0, 0).AddDays(3))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -125,13 +121,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 11, 0, 0).AddDays(4))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -147,13 +143,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 11, 0, 0).AddDays(5))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -169,13 +165,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 11, 0, 0).AddDays(6))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -194,13 +190,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 14, 0, 0))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -216,13 +212,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 14, 0, 0).AddDays(1))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -238,13 +234,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 14, 0, 0).AddDays(2))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -260,13 +256,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 14, 0, 0).AddDays(3))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -282,13 +278,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 14, 0, 0).AddDays(4))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -304,13 +300,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 14, 0, 0).AddDays(5))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -326,13 +322,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 14, 0, 0).AddDays(6))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -351,13 +347,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 17, 0, 0))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -373,13 +369,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 17, 0, 0).AddDays(1))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -395,13 +391,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 17, 0, 0).AddDays(2))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -417,13 +413,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 17, 0, 0).AddDays(3))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -439,13 +435,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 17, 0, 0).AddDays(4))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -461,13 +457,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 17, 0, 0).AddDays(5))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -483,13 +479,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 17, 0, 0).AddDays(6))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -508,13 +504,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 19, 0, 0))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -530,13 +526,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 19, 0, 0).AddDays(1))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -552,13 +548,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 19, 0, 0).AddDays(2))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -574,13 +570,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 19, 0, 0).AddDays(3))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -596,13 +592,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 19, 0, 0).AddDays(4))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -618,13 +614,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 19, 0, 0).AddDays(5))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -640,13 +636,13 @@
 							{
 								if (work.BookingTime == new DateTime(Model.Date.Year, Model.Date.Month, Model.Date.Day, 19, 0, 0).AddDays(6))
 								{
-									<div class="card shadow" style="width: 18rem; cursor: pointer;" data-bs-toggle="modal" data-bs-target="#eventModal"
+									<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
 										 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 										<div class="card-body">
 											<h5 class="card-title">@work.Title</h5>
 											<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 											<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes</p>
-											<p class="card-text mb-1"><strong>Место:</strong> @work.GymId</p>
+											<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
 										</div>
 									</div>
 								}
@@ -704,6 +700,27 @@
 }
 
 <style>
+
+	.availability-input {
+		width: 100%; /* Убедиться, что этот контейнер занимает всю доступную ширину td */
+		height: 100%; /* Опционально, если вы хотите, чтобы он заполнял высоту */
+		box-sizing: border-box; /* Включает padding и border в общую ширину/высоту */
+		/* Если внутри .availability-input может быть несколько карточек,
+		   и вы хотите, чтобы они располагались в строку и переносились: */
+		display: flex;
+		flex-wrap: wrap;
+		gap: 5px; /* Промежуток между карточками */
+		align-items: flex-start; /* Выравнивание элементов по верху */
+		justify-content: flex-start; /* Выравнивание элементов по началу */
+	}
+
+
+	.shadow
+	{
+		width: 15rem; 
+		cursor: pointer;
+	}
+
 	th, td {
 		border: 1px solid #ddd;
 		padding: 12px;
