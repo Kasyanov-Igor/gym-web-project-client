@@ -2,6 +2,7 @@
 using GymProjectClient.Pages.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Model.Entities;
 
 namespace GymProjectClient.Pages
@@ -15,31 +16,53 @@ namespace GymProjectClient.Pages
         }
         public Coach? Coach { get; set; }
 
-		public List<Gym> Gyms { get; set; }
+		public List<SelectListItem> Gyms { get; set; }
 
-		public List<Workout> Workouts { get; set; }
+        [BindProperty]
+        public int? SelectedGymId { get; set; }
 
-		public DateTime Date;
+        public List<Workout> Workouts { get; set; }
 
-		private CrudService _crudService;
+        [BindProperty]
+        public DateTime Date { get; set; }
+
+        private CrudService _crudService;
 
         public string ErrorMessage { get; set; }
 
-        public async Task OnGet(string id)
+        public async Task OnGetAsync(string id)
 		{
 			this.Coach = await this.GetCoachByIdAsync(Convert.ToInt32(id));
 
-            this.Gyms = await this.GetGyms();
+            this.Gyms = this.LoadGyms(await this.GetGyms());
 
-			this.Workouts = await this.GetWorkouts();
+            this.Workouts = await this.GetWorkoutsForGym(SelectedGymId);
         }
 
-		public async Task<Coach> GetCoachByIdAsync(int id)
+        public async Task OnPostAsync(string id)
+        {
+            this.Coach = await this.GetCoachByIdAsync(Convert.ToInt32(id));
+
+            this.Gyms = this.LoadGyms(await this.GetGyms());
+
+            this.Workouts = await this.GetWorkoutsForGym(SelectedGymId);
+        }
+
+        public async Task<Coach> GetCoachByIdAsync(int id)
 		{
 			return await this._crudService.GetEntityByIdAsync<Coach>(id, "Coach");
 		}
 
-		public async Task<List<Gym>?> GetGyms()
+        private List<SelectListItem> LoadGyms(List<Gym> coachesList)
+        {
+            return coachesList.Select(c => new SelectListItem
+            {
+                Value = c.Id.ToString(),
+                Text = c.Name,
+            }).ToList();
+        }
+
+        public async Task<List<Gym>?> GetGyms()
 		{
 			string url = "http://localhost:5067/Gyms";
 
@@ -51,6 +74,17 @@ namespace GymProjectClient.Pages
             string url = "http://localhost:5067/Workout";
 
             return await this._crudService.GetListEntity<Workout>(url);
+        }
+
+        public async Task<List<Workout>?> GetWorkoutsForGym(int? GymId)
+        {
+            if (!GymId.HasValue)
+            {
+                return null;
+            }
+
+            string url = $"http://localhost:5067/Workout/ByGym/{GymId}";
+            return await _crudService.GetListEntity<Workout>(url);
         }
     }
 }

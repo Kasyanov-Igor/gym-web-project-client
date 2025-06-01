@@ -9,10 +9,14 @@
 
 	<h3>@Model.Coach.FullName Welicome</h3>
 	<p><strong>Специализация:</strong> @Model.Coach.Specialization</p>
-	@foreach (Gym gym in Model.Gyms)
-	{
-		<p>@gym.Id зал - @gym.Name </p>
-	}
+
+	<div class="form-group mb-3">
+		<form method="post">
+			<select asp-for="SelectedGymId" asp-items="Model.Gyms" onchange="this.form.submit()">
+				<option value="">-- Выберите зал --</option>
+			</select>
+		</form>
+	</div>
 
 	<h1>Расписание работы тренера</h1>
 	<p>Отметьте доступные слоты.</p>
@@ -21,166 +25,166 @@
 		<thead>
 			<tr>
 				<th>Время / Дата</th>
-				<th>@Model.Date.ToString("dd MMMM", new CultureInfo("ru-RU"))<br>@Model.Date.ToString("dddd", new CultureInfo("ru-RU"))</th>
-				<th>@Model.Date.AddDays(1).ToString("dd MMMM", new CultureInfo("ru-RU"))<br>@Model.Date.AddDays(1).ToString("dddd", new CultureInfo("ru-RU"))</th>
-				<th>@Model.Date.AddDays(2).ToString("dd MMMM", new CultureInfo("ru-RU"))<br>@Model.Date.AddDays(2).ToString("dddd", new CultureInfo("ru-RU"))</th>
-				<th>@Model.Date.AddDays(3).ToString("dd MMMM", new CultureInfo("ru-RU"))<br>@Model.Date.AddDays(3).ToString("dddd", new CultureInfo("ru-RU"))</th>
-				<th>@Model.Date.AddDays(4).ToString("dd MMMM", new CultureInfo("ru-RU"))<br>@Model.Date.AddDays(4).ToString("dddd", new CultureInfo("ru-RU"))</th>
-				<th>@Model.Date.AddDays(5).ToString("dd MMMM", new CultureInfo("ru-RU"))<br>@Model.Date.AddDays(5).ToString("dddd", new CultureInfo("ru-RU"))</th>
-				<th>@Model.Date.AddDays(6).ToString("dd MMMM", new CultureInfo("ru-RU"))<br>@Model.Date.AddDays(6).ToString("dddd", new CultureInfo("ru-RU"))</th>
+            @for (int i = 0; i < 7; i++)
+            {
+                var date = Model.Date.AddDays(i);
+                <th>
+                    @date.ToString("dd MMMM", new CultureInfo("ru-RU"))<br />
+                    @date.ToString("dddd", new CultureInfo("ru-RU"))
+                </th>
+            }
 			</tr>
 		</thead>
 		<tbody>
 			<tr>
 				<td>11:00</td>
-				<td class="time-slot">
-					<div class="availability-input today-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input second-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div></td>
-				<td class="time-slot">
-					<div class="availability-input third-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input fourth-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input fifth-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input sixth-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input seventh-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-			</tr>
+				@for (int i = 0; i < 7; i++)
+				{
+					var currentDate = Model.Date.AddDays(i);
+					var slotTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 11, 0, 0);
+					<td class="time-slot">
+						<div class="availability-input">
+							@if (Model.Workouts != null)
+							{
+								foreach (var work in Model.Workouts)
+								{
+									if (work.BookingTime == slotTime)
+									{
+										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
+											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+											<div class="card-body">
+												<h5 class="card-title">@work.Title</h5>
+												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
+												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+											</div>
+										</div>
+									}
+									else
+									{
+										<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
+									}
+								}
+							}
+							@if (Model.Workouts.Count == 0)
+							{
+								<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
+							}
+						</div>
+					</td>
+				}
 			<tr>
 				<td>14:00</td>
-				<td class="time-slot">
-					<div class="availability-input today-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input second-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input third-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input fourth-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input fifth-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input sixth-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input seventh-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-			</tr>
+					@for (int i = 0; i < 7; i++)
+					{
+						var currentDate = Model.Date.AddDays(i);
+						var slotTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 14, 0, 0);
+					<td class="time-slot">
+						<div class="availability-input">
+								@if (Model.Workouts != null)
+								{
+									foreach (var work in Model.Workouts)
+									{
+										if (work.BookingTime == slotTime)
+										{
+										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
+											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+											<div class="card-body">
+												<h5 class="card-title">@work.Title</h5>
+												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
+												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+											</div>
+										</div>
+										}
+										else
+										{
+										<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
+										}
+									}
+								}
+								@if (Model.Workouts.Count == 0)
+								{
+								<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
+								}
+						</div>
+					</td>
+					}
 			<tr>
 				<td>17:00</td>
-				<td class="time-slot">
-					<div class="availability-input today-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input second-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input third-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input fourth-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input fifth-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input sixth-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input seventh-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
+						@for (int i = 0; i < 7; i++)
+						{
+							var currentDate = Model.Date.AddDays(i);
+							var slotTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 17, 0, 0);
+					<td class="time-slot">
+						<div class="availability-input">
+									@if (Model.Workouts != null)
+									{
+										foreach (var work in Model.Workouts)
+										{
+											if (work.BookingTime == slotTime)
+											{
+										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
+											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+											<div class="card-body">
+												<h5 class="card-title">@work.Title</h5>
+												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
+												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+											</div>
+										</div>
+											}
+											else
+											{
+										<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
+											}
+										}
+									}
+									@if (Model.Workouts.Count == 0)
+									{
+								<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
+									}
+						</div>
+					</td>
+						}
 			</tr>
 			<tr>
 				<td>19:00</td>
-				<td class="time-slot">
-					<div class="availability-input today-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input second-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input third-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input fourth-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input fifth-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input sixth-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
-				<td class="time-slot">
-					<div class="availability-input seventh-day-date">
-						<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
-					</div>
-				</td>
+						@for (int i = 0; i < 7; i++)
+						{
+							var currentDate = Model.Date.AddDays(i);
+							var slotTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 19, 0, 0);
+					<td class="time-slot">
+						<div class="availability-input">
+									@if (Model.Workouts != null)
+									{
+										foreach (var work in Model.Workouts)
+										{
+											if (work.BookingTime == slotTime)
+											{
+										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
+											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+											<div class="card-body">
+												<h5 class="card-title">@work.Title</h5>
+												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
+												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+											</div>
+										</div>
+											}
+											else
+											{
+										<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
+											}
+										}
+									}
+									@if (Model.Workouts.Count == 0)
+									{
+								<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
+									}
+						</div>
+					</td>
+						}
 			</tr>
 		</tbody>
 	</table>
@@ -217,9 +221,9 @@
 							<label for="Gym" class="form-label">Зал для тренировки</label>
 							<select class="form-select" id="Gym" name="GymId" required>
 								<option value="">Выберите зал</option>
-								@foreach (Gym gym in Model.Gyms)
+								@foreach (var gym in Model.Gyms)
 								{
-								<option value="@gym.Id">@gym.Name</option>
+								<option value="@gym.Value">@gym.Text</option>
 								}
 							</select>
 						</div>
@@ -250,6 +254,12 @@
 
 
 <style>
+
+	.availability-input {
+
+
+	}
+
 	th, td {
 		border: 1px solid #ddd;
 		padding: 12px;
