@@ -11,9 +11,10 @@
 	<p><strong>Специализация:</strong> @Model.Coach.Specialization</p>
 
 	<div class="form-group mb-3">
+		<p>Выбор зала:</p>
 		<form method="post">
 			<select asp-for="SelectedGymId" asp-items="Model.Gyms" onchange="this.form.submit()">
-				<option value="">-- Выберите зал --</option>
+				
 			</select>
 		</form>
 	</div>
@@ -25,14 +26,14 @@
 		<thead>
 			<tr>
 				<th>Время / Дата</th>
-            @for (int i = 0; i < 7; i++)
-            {
-                var date = Model.Date.AddDays(i);
-                <th>
-                    @date.ToString("dd MMMM", new CultureInfo("ru-RU"))<br />
-                    @date.ToString("dddd", new CultureInfo("ru-RU"))
-                </th>
-            }
+				@for (int i = 0; i < 7; i++)
+				{
+					var date = Model.Date.AddDays(i);
+					<th>
+						@date.ToString("dd MMMM", new CultureInfo("ru-RU"))<br />
+						@date.ToString("dddd", new CultureInfo("ru-RU"))
+					</th>
+				}
 			</tr>
 		</thead>
 		<tbody>
@@ -43,15 +44,15 @@
 					var currentDate = Model.Date.AddDays(i);
 					var slotTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 11, 0, 0);
 					<td class="time-slot">
-						<div class="availability-input">
-							@if (Model.Workouts != null)
+						<div class="availability-input fourth-day-date">
+							@if (Model.Workouts.Count > 0)
 							{
 								foreach (var work in Model.Workouts)
 								{
 									if (work.BookingTime == slotTime)
 									{
 										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
-											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+										data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 											<div class="card-body">
 												<h5 class="card-title">@work.Title</h5>
 												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
@@ -62,13 +63,13 @@
 									}
 									else
 									{
-										<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
+										<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger" onclick="setBookingTime('@slotTime')">+</button>
 									}
 								}
 							}
-							@if (Model.Workouts.Count == 0)
+							else
 							{
-								<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
+								<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger" onclick="setBookingTime('@slotTime')">+</button>
 							}
 						</div>
 					</td>
@@ -81,7 +82,7 @@
 						var slotTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 14, 0, 0);
 					<td class="time-slot">
 						<div class="availability-input">
-								@if (Model.Workouts != null)
+								@if (Model.Workouts.Count > 0)
 								{
 									foreach (var work in Model.Workouts)
 									{
@@ -99,13 +100,13 @@
 										}
 										else
 										{
-										<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
+										<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger" onclick="setBookingTime('@slotTime')">+</button>
 										}
 									}
 								}
-								@if (Model.Workouts.Count == 0)
+								else
 								{
-								<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
+								<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger" onclick="setBookingTime('@slotTime')">+</button>
 								}
 						</div>
 					</td>
@@ -118,7 +119,7 @@
 							var slotTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 17, 0, 0);
 					<td class="time-slot">
 						<div class="availability-input">
-									@if (Model.Workouts != null)
+									@if (Model.Workouts.Count > 0)
 									{
 										foreach (var work in Model.Workouts)
 										{
@@ -136,13 +137,13 @@
 											}
 											else
 											{
-										<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
+										<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger" onclick="setBookingTime('@slotTime')">+</button>
 											}
 										}
 									}
-									@if (Model.Workouts.Count == 0)
+									else
 									{
-								<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
+								<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger" onclick="setBookingTime('@slotTime')">+</button>
 									}
 						</div>
 					</td>
@@ -156,31 +157,31 @@
 							var slotTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 19, 0, 0);
 					<td class="time-slot">
 						<div class="availability-input">
-									@if (Model.Workouts != null)
+									@if (Model.Workouts.Count > 0)
 									{
 										foreach (var work in Model.Workouts)
 										{
 											if (work.BookingTime == slotTime)
 											{
-										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
-											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
-											<div class="card-body">
-												<h5 class="card-title">@work.Title</h5>
-												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
-												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
-												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
-											</div>
-										</div>
+												<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
+													 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+													<div class="card-body">
+														<h5 class="card-title">@work.Title</h5>
+														<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+														<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
+														<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+													</div>
+												</div>
 											}
 											else
 											{
-										<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
+										<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger" onclick="setBookingTime('@slotTime')">+</button>
 											}
 										}
 									}
-									@if (Model.Workouts.Count == 0)
+									else
 									{
-								<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger">+</button>
+								<button type="button" data-bs-toggle="modal" data-bs-target="#slotModal" class="btn btn-danger" onclick="setBookingTime('@slotTime')">+</button>
 									}
 						</div>
 					</td>
@@ -223,7 +224,7 @@
 								<option value="">Выберите зал</option>
 								@foreach (var gym in Model.Gyms)
 								{
-								<option value="@gym.Value">@gym.Text</option>
+									<option value="@gym.Value">@gym.Text</option>
 								}
 							</select>
 						</div>
@@ -251,13 +252,15 @@
 </div>
 
 <script src="~/js/site.js" asp-append-version="true"></script>
-
+<script>
+	function setBookingTime(slotTime) {
+		document.querySelector('input[name="BookingTime"]').value = slotTime;
+	}
+</script>
 
 <style>
 
 	.availability-input {
-
-
 	}
 
 	th, td {
@@ -296,7 +299,5 @@
 	.booked {
 		background-color: #f8d7da; /* Пример стиля для "занято" */
 	}
-
-
 
 </style>
