@@ -19,10 +19,6 @@
 	</form>
 </div>
 
-<form method="post">
-
-</form>
-
 <div>
 	<table class="bg-light w-100">
 		<thead>
@@ -53,7 +49,7 @@
 								{
 									if (work.BookingTime == slotTime)
 									{
-										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
+										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal" work-id="@work.Id"
 											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 											<div class="card-body">
 												<h5 class="card-title">@work.Title</h5>
@@ -83,7 +79,7 @@
 								{
 									if (work.BookingTime == slotTime)
 									{
-										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
+										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal" work-id="@work.Id"
 											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 											<div class="card-body">
 												<h5 class="card-title">@work.Title</h5>
@@ -113,7 +109,7 @@
 								{
 									if (work.BookingTime == slotTime)
 									{
-										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
+										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal" work-id="@work.Id"
 											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 											<div class="card-body">
 												<h5 class="card-title">@work.Title</h5>
@@ -143,7 +139,7 @@
 								{
 									if (work.BookingTime == slotTime)
 									{
-										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
+										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal" work-id="@work.Id"
 											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 											<div class="card-body">
 												<h5 class="card-title">@work.Title</h5>
@@ -178,6 +174,7 @@
 				<p><strong>Описание:</strong> <span id="modalDescription"></span></p>
 			</div>
 			<div class="modal-footer">
+				<button type="submit" class="btn btn-danger" id="bookButton">Бронирование</button>
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
 			</div>
 		</div>
@@ -204,6 +201,32 @@
 		  eventModal.querySelector('#modalGym').textContent = gym;
 		  eventModal.querySelector('#modalDescription').textContent = description;
 		});
+
+			var currentWorkoutData = {};
+				 currentWorkoutData = {
+				id: button.getAttribute('work-id'),
+
+		};
+
+			$('#bookButton').on('click', function () {
+		$.ajax({
+			url: '/YourController/BookWorkout', // замените на ваш URL
+			type: 'POST',
+			contentType: 'application/json',
+			data: JSON.stringify(currentWorkoutData),
+			success: function () {
+				// Закрываем модалку
+				var modal = bootstrap.Modal.getInstance(document.getElementById('eventModal'));
+				modal.hide();
+
+				alert('Бронирование успешно!');
+				// Здесь можно обновить расписание или выполнить другие действия
+			},
+			error: function (jqXHR) {
+				alert('Ошибка бронирования: ' + jqXHR.responseText);
+			}
+		});
+	});
 	</script>
 }
 
