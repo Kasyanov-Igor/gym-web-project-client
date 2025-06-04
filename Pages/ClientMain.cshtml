@@ -6,7 +6,7 @@
 @{
 }
 
-<h1>@Model.Client.Name Welicome</h1> 
+<h1>@Model.Client.Name Welicome</h1>
 
 <div class="form-group mb-3">
 	<form method="post">
@@ -24,14 +24,14 @@
 		<thead>
 			<tr>
 				<th>Время / Дата</th>
-            @for (int i = 0; i < 7; i++)
-            {
-                var date = Model.Date.AddDays(i);
-                <th>
-                    @date.ToString("dd MMMM", new CultureInfo("ru-RU"))<br />
-                    @date.ToString("dddd", new CultureInfo("ru-RU"))
-                </th>
-            }
+				@for (int i = 0; i < 7; i++)
+				{
+					var date = Model.Date.AddDays(i);
+					<th>
+						@date.ToString("dd MMMM", new CultureInfo("ru-RU"))<br />
+						@date.ToString("dddd", new CultureInfo("ru-RU"))
+					</th>
+				}
 			</tr>
 		</thead>
 		<tbody>
@@ -67,7 +67,7 @@
 			</tr>
 			<tr>
 				<td>14:00</td>
-							@for (int i = 0; i < 7; i++)
+				@for (int i = 0; i < 7; i++)
 				{
 					var currentDate = Model.Date.AddDays(i);
 					var slotTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 14, 0, 0);
@@ -159,6 +159,148 @@
 	</table>
 </div>
 
+<h1>@Model.Client.Name ТРЕНИРОВКИ</h1>
+
+<div>
+	<table class="bg-light w-100">
+		<thead>
+			<tr>
+				<th>Время / Дата</th>
+				@for (int i = 0; i < 7; i++)
+				{
+					var date = Model.Date.AddDays(i);
+					<th>
+						@date.ToString("dd MMMM", new CultureInfo("ru-RU"))<br />
+						@date.ToString("dddd", new CultureInfo("ru-RU"))
+					</th>
+				}
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>11:00</td>
+				@for (int i = 0; i < 7; i++)
+				{
+					var currentDate = Model.Date.AddDays(i);
+					var slotTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 11, 0, 0);
+					<td class="time-slot">
+						<div class="availability-input">
+							@if (Model.Workouts != null)
+							{
+								foreach (var work in Model.Workouts)
+								{
+									if (work.BookingTime == slotTime && work.ClientName == Model.Client.Name)
+									{
+										<div class="card shadow" work-id="@work.Id" client-name="@Model.Client.Name"
+											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+											<div class="card-body">
+												<h5 class="card-title">@work.Title</h5>
+												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
+												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+											</div>
+										</div>
+									}
+								}
+							}
+						</div>
+					</td>
+				}
+			</tr>
+			<tr>
+				<td>14:00</td>
+				@for (int i = 0; i < 7; i++)
+				{
+					var currentDate = Model.Date.AddDays(i);
+					var slotTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 14, 0, 0);
+					<td class="time-slot">
+						<div class="availability-input">
+							@if (Model.Workouts != null)
+							{
+								foreach (var work in Model.Workouts)
+								{
+									if (work.BookingTime == slotTime && work.ClientName == Model.Client.Name)
+									{
+										<div class="card shadow" work-id="@work.Id" client-name="@Model.Client.Name"
+											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+											<div class="card-body">
+												<h5 class="card-title">@work.Title</h5>
+												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
+												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+											</div>
+										</div>
+									}
+								}
+							}
+						</div>
+					</td>
+				}
+			</tr>
+			<tr>
+				<td>17:00</td>
+				@for (int i = 0; i < 7; i++)
+				{
+					var currentDate = Model.Date.AddDays(i);
+					var slotTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 17, 0, 0);
+					<td class="time-slot">
+						<div class="availability-input">
+							@if (Model.Workouts != null)
+							{
+								foreach (var work in Model.Workouts)
+								{
+									if (work.BookingTime == slotTime && work.ClientName == Model.Client.Name)
+									{
+										<div class="card shadow" work-id="@work.Id" client-name="@Model.Client.Name"
+											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+											<div class="card-body">
+												<h5 class="card-title">@work.Title</h5>
+												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
+												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+											</div>
+										</div>
+									}
+								}
+							}
+						</div>
+					</td>
+				}
+			</tr>
+			<tr>
+				<td>19:00</td>
+				@for (int i = 0; i < 7; i++)
+				{
+					var currentDate = Model.Date.AddDays(i);
+					var slotTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 19, 0, 0);
+					<td class="time-slot">
+						<div class="availability-input">
+							@if (Model.Workouts != null)
+							{
+								foreach (var work in Model.Workouts)
+								{
+									if (work.BookingTime == slotTime && work.ClientName == Model.Client.Name)
+									{
+										<div class="card shadow" work-id="@work.Id" client-name="@Model.Client.Name"
+											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+											<div class="card-body">
+												<h5 class="card-title">@work.Title</h5>
+												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
+												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+											</div>
+										</div>
+									}
+								}
+							}
+						</div>
+					</td>
+				}
+			</tr>
+		</tbody>
+	</table>
+</div>
+
 <div class="modal fade" id="modelRecord" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
@@ -189,7 +331,7 @@
 		height: 100%; /* Опционально, если вы хотите, чтобы он заполнял высоту */
 		box-sizing: border-box; /* Включает padding и border в общую ширину/высоту */
 		/* Если внутри .availability-input может быть несколько карточек,
-		   и вы хотите, чтобы они располагались в строку и переносились: */
+			   и вы хотите, чтобы они располагались в строку и переносились: */
 		display: flex;
 		flex-wrap: wrap;
 		gap: 5px; /* Промежуток между карточками */
@@ -198,9 +340,8 @@
 	}
 
 
-	.shadow
-	{
-		width: 15rem; 
+	.shadow {
+		width: 15rem;
 		cursor: pointer;
 	}
 
