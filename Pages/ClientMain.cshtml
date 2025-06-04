@@ -49,7 +49,7 @@
 								{
 									if (work.BookingTime == slotTime)
 									{
-										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal" work-id="@work.Id"
+										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#modelRecord" work-id="@work.Id" client-name="@Model.Client.Name"
 											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 											<div class="card-body">
 												<h5 class="card-title">@work.Title</h5>
@@ -79,7 +79,7 @@
 								{
 									if (work.BookingTime == slotTime)
 									{
-										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal" work-id="@work.Id"
+										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#modelRecord" work-id="@work.Id" client-name="@Model.Client.Name"
 											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 											<div class="card-body">
 												<h5 class="card-title">@work.Title</h5>
@@ -109,7 +109,7 @@
 								{
 									if (work.BookingTime == slotTime)
 									{
-										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal" work-id="@work.Id"
+										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#modelRecord" work-id="@work.Id" client-name="@Model.Client.Name"
 											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 											<div class="card-body">
 												<h5 class="card-title">@work.Title</h5>
@@ -139,7 +139,7 @@
 								{
 									if (work.BookingTime == slotTime)
 									{
-										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal" work-id="@work.Id"
+										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#modelRecord" work-id="@work.Id" client-name="@Model.Client.Name"
 											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 											<div class="card-body">
 												<h5 class="card-title">@work.Title</h5>
@@ -159,7 +159,7 @@
 	</table>
 </div>
 
-<div class="modal fade" id="eventModal" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
+<div class="modal fade" id="modelRecord" tabindex="-1" aria-labelledby="eventModalLabel" aria-hidden="true">
 	<div class="modal-dialog">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -181,57 +181,9 @@
 	</div>
 </div>
 
-@section Scripts {
-	<script>
-		var eventModal = document.getElementById('eventModal');
-		eventModal.addEventListener('show.bs.modal', function (event) {
-		  // Кнопка (карточка), которая вызвала модальное окно
-		  var button = event.relatedTarget;
-		  // Получаем данные из атрибутов data-*
-		  var title = button.getAttribute('data-title');
-		  var coach = button.getAttribute('data-coach');
-		  var duration = button.getAttribute('data-duration');
-		  var gym = button.getAttribute('data-gym');
-		  var description = button.getAttribute('data-description');
 
-		  // Находим элементы модального окна и вставляем данные
-		  eventModal.querySelector('#modalTitle').textContent = title;
-		  eventModal.querySelector('#modalCoach').textContent = coach;
-		  eventModal.querySelector('#modalDuration').textContent = duration;
-		  eventModal.querySelector('#modalGym').textContent = gym;
-		  eventModal.querySelector('#modalDescription').textContent = description;
-		});
-
-			var currentWorkoutData = {};
-				 currentWorkoutData = {
-				id: button.getAttribute('work-id'),
-
-		};
-
-			$('#bookButton').on('click', function () {
-		$.ajax({
-			url: '/YourController/BookWorkout', // замените на ваш URL
-			type: 'POST',
-			contentType: 'application/json',
-			data: JSON.stringify(currentWorkoutData),
-			success: function () {
-				// Закрываем модалку
-				var modal = bootstrap.Modal.getInstance(document.getElementById('eventModal'));
-				modal.hide();
-
-				alert('Бронирование успешно!');
-				// Здесь можно обновить расписание или выполнить другие действия
-			},
-			error: function (jqXHR) {
-				alert('Ошибка бронирования: ' + jqXHR.responseText);
-			}
-		});
-	});
-	</script>
-}
 
 <style>
-
 	.availability-input {
 		width: 100%; /* Убедиться, что этот контейнер занимает всю доступную ширину td */
 		height: 100%; /* Опционально, если вы хотите, чтобы он заполнял высоту */
