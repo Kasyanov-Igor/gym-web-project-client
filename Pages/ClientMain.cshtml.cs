@@ -4,7 +4,6 @@ using GymProjectClient.Pages.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Model.Entities;
 
 namespace GymProjectClient.Pages
