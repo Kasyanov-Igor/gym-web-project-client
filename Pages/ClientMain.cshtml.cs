@@ -4,7 +4,6 @@ using GymProjectClient.Pages.Service;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Model.Entities;
 
 namespace GymProjectClient.Pages
@@ -60,7 +59,7 @@ namespace GymProjectClient.Pages
 				new SelectListItem { Value = DateTime.Today.AddDays(2).ToString("yyyy-MM-dd"), Text = DateTime.Today.AddDays(2).ToString("dd MMMM yyyy", new CultureInfo("ru-RU")) },
 				new SelectListItem { Value = DateTime.Today.AddDays(3).ToString("yyyy-MM-dd"), Text = DateTime.Today.AddDays(3).ToString("dd MMMM yyyy", new CultureInfo("ru-RU")) },
 				new SelectListItem { Value = DateTime.Today.AddDays(4).ToString("yyyy-MM-dd"), Text = DateTime.Today.AddDays(4).ToString("dd MMMM yyyy", new CultureInfo("ru-RU")) },
-				 new SelectListItem { Value = DateTime.Today.AddDays(5).ToString("yyyy-MM-dd"), Text = DateTime.Today.AddDays(5).ToString("dd MMMM yyyy", new CultureInfo("ru-RU")) },
+				new SelectListItem { Value = DateTime.Today.AddDays(5).ToString("yyyy-MM-dd"), Text = DateTime.Today.AddDays(5).ToString("dd MMMM yyyy", new CultureInfo("ru-RU")) },
 				new SelectListItem { Value = DateTime.Today.AddDays(6).ToString("yyyy-MM-dd"), Text = DateTime.Today.AddDays(6).ToString("dd MMMM yyyy", new CultureInfo("ru-RU")) }
 			};
 		}

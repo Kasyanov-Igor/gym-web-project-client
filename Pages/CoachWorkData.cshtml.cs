@@ -19,7 +19,7 @@ namespace GymProjectClient.Pages
 		public List<SelectListItem> Gyms { get; set; }
 
         [BindProperty]
-        public int? SelectedGymId { get; set; }
+        public int? SelectedGymId { get; set; } = 1;
 
         public List<Workout> Workouts { get; set; }
 
@@ -80,7 +80,8 @@ namespace GymProjectClient.Pages
         {
             if (!GymId.HasValue)
             {
-                return null;
+                string url1 = $"http://localhost:5067/Workout/ByGym/{Gyms[0].Value}";
+                return await _crudService.GetListEntity<Workout>(url1);
             }
 
             string url = $"http://localhost:5067/Workout/ByGym/{GymId}";
