@@ -6,7 +6,6 @@
 }
 
 <div>
-
 	<h3>@Model.Coach.FullName Welicome</h3>
 	<p><strong>Специализация:</strong> @Model.Coach.Specialization</p>
 
@@ -14,7 +13,6 @@
 		<p>Выбор зала:</p>
 		<form method="post">
 			<select asp-for="SelectedGymId" asp-items="Model.Gyms" onchange="this.form.submit()">
-				
 			</select>
 		</form>
 	</div>
@@ -52,12 +50,16 @@
 									if (work.BookingTime == slotTime)
 									{
 										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
-										data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
 											<div class="card-body">
 												<h5 class="card-title">@work.Title</h5>
 												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
 												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+												<p class="card-text mb-1">
+													@(work.Places > 1 ? $"Свободные места: {work.Places}" :
+																							work.Places == 1 ? "Индивидуальная тренировка" : "Свободных мест нет")
+												</p>
 											</div>
 										</div>
 									}
@@ -95,6 +97,10 @@
 												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
 												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+												<p class="card-text mb-1">
+														@(work.Places > 1 ? $"Свободные места: {work.Places}" :
+																								work.Places == 1 ? "Индивидуальная тренировка" : "Свободных мест нет")
+												</p>
 											</div>
 										</div>
 										}
@@ -132,6 +138,10 @@
 												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
 												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+												<p class="card-text mb-1">
+															@(work.Places > 1 ? $"Свободные места: {work.Places}" :
+																									work.Places == 1 ? "Индивидуальная тренировка" : "Свободных мест нет")
+												</p>
 											</div>
 										</div>
 											}
@@ -163,15 +173,19 @@
 										{
 											if (work.BookingTime == slotTime)
 											{
-												<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
-													 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
-													<div class="card-body">
-														<h5 class="card-title">@work.Title</h5>
-														<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
-														<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
-														<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
-													</div>
-												</div>
+										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#eventModal"
+											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+											<div class="card-body">
+												<h5 class="card-title">@work.Title</h5>
+												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
+												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+												<p class="card-text mb-1">
+															@(work.Places > 1 ? $"Свободные места: {work.Places}" :
+																									work.Places == 1 ? "Индивидуальная тренировка" : "Свободных мест нет")
+												</p>
+											</div>
+										</div>
 											}
 											else
 											{
@@ -219,13 +233,18 @@
 						</div>
 
 						<div class="mb-3">
+							<input type="hidden" name="GymId" value="@Model.SelectedGymId" required>
+						</div>
+
+						<div class="mb-3">
 							<label for="Gym" class="form-label">Зал для тренировки</label>
-							<select class="form-select" id="Gym" name="GymId" required>
-								<option value="">Выберите зал</option>
-								@foreach (var gym in Model.Gyms)
-								{
-									<option value="@gym.Value">@gym.Text</option>
-								}
+							<select class="form-select" id="Places" name="Places" required>
+								<option value="">Укажите количество свободных мест</option>
+								<option value="1">Индивидуальная тренировка</option>
+								<option value="10">Групповая тренировка из 10 человек</option>
+								<option value="15">Групповая тренировка из 15 человек</option>
+								<option value="20">Групповая тренировка из 25 человек</option>
+
 							</select>
 						</div>
 
