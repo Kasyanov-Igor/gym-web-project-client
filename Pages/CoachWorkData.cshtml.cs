@@ -19,7 +19,7 @@ namespace GymProjectClient.Pages
 		public List<SelectListItem> Gyms { get; set; }
 
         [BindProperty]
-        public int? SelectedGymId { get; set; }
+        public int? SelectedGymId { get; set; } = 1;
 
         public List<Workout> Workouts { get; set; }
 

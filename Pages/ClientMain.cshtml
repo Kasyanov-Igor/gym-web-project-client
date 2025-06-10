@@ -47,7 +47,7 @@
 							{
 								foreach (var work in Model.Workouts)
 								{
-									if (work.BookingTime == slotTime)
+									if (work.BookingTime == slotTime && work.Places > 0)
 									{
 										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#modelRecord" work-id="@work.Id" client-name="@Model.Client.Name"
 											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
@@ -56,6 +56,10 @@
 												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
 												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+												<p class="card-text mb-1">
+													@(work.Places > 1 ? $"Свободные места: {work.Places}" :
+															work.Places == 1 ? "Индивидуальная тренировка" : "Свободных мест нет")
+												</p>
 											</div>
 										</div>
 									}
@@ -77,7 +81,7 @@
 							{
 								foreach (var work in Model.Workouts)
 								{
-									if (work.BookingTime == slotTime)
+									if (work.BookingTime == slotTime && work.Places > 0)
 									{
 										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#modelRecord" work-id="@work.Id" client-name="@Model.Client.Name"
 											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
@@ -86,6 +90,8 @@
 												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
 												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+												@(work.Places > 1 ? $"Свободные места: {work.Places}" :
+																			work.Places == 1 ? "Индивидуальная тренировка" : "Свободных мест нет")
 											</div>
 										</div>
 									}
@@ -107,7 +113,7 @@
 							{
 								foreach (var work in Model.Workouts)
 								{
-									if (work.BookingTime == slotTime)
+									if (work.BookingTime == slotTime && work.Places > 0)
 									{
 										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#modelRecord" work-id="@work.Id" client-name="@Model.Client.Name"
 											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
@@ -116,6 +122,8 @@
 												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
 												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+												@(work.Places > 1 ? $"Свободные места: {work.Places}" :
+																			work.Places == 1 ? "Индивидуальная тренировка" : "Свободных мест нет")
 											</div>
 										</div>
 									}
@@ -137,7 +145,7 @@
 							{
 								foreach (var work in Model.Workouts)
 								{
-									if (work.BookingTime == slotTime)
+									if (work.BookingTime == slotTime && work.Places > 0)
 									{
 										<div class="card shadow" data-bs-toggle="modal" data-bs-target="#modelRecord" work-id="@work.Id" client-name="@Model.Client.Name"
 											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
@@ -146,6 +154,8 @@
 												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
 												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+												@(work.Places > 1 ? $"Свободные места: {work.Places}" :
+																			work.Places == 1 ? "Индивидуальная тренировка" : "Свободных мест нет")
 											</div>
 										</div>
 									}
@@ -198,6 +208,8 @@
 												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
 												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+												@(work.Places > 1 ? $"Свободные места: {work.Places}" :
+																			work.Places == 1 ? "Индивидуальная тренировка" : "Свободных мест нет")
 											</div>
 										</div>
 									}
@@ -228,6 +240,8 @@
 												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
 												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+												@(work.Places > 1 ? $"Свободные места: {work.Places}" :
+																			work.Places == 1 ? "Индивидуальная тренировка" : "Свободных мест нет")
 											</div>
 										</div>
 									}
@@ -258,6 +272,8 @@
 												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
 												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+												@(work.Places > 1 ? $"Свободные места: {work.Places}" :
+																			work.Places == 1 ? "Индивидуальная тренировка" : "Свободных мест нет")
 											</div>
 										</div>
 									}
@@ -288,6 +304,8 @@
 												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
 												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
 												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+												@(work.Places > 1 ? $"Свободные места: {work.Places}" :
+																			work.Places == 1 ? "Индивидуальная тренировка" : "Свободных мест нет")
 											</div>
 										</div>
 									}
