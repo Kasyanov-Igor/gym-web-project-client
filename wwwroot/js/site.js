@@ -90,67 +90,68 @@ if (!window.__myAppHandlersInitialized) {
                 }
             });
         });
-	const eventModal = document.getElementById('modelRecord');
-	const bookButton = document.getElementById('bookButton');
+        const eventModal = document.getElementById('modelRecord');
+        const bookButton = document.getElementById('bookButton');
 
-	// Переменная для хранения текущего workId и данных бронирования
-	let newClient = null;
-	let currentWorkId = null;
+        // Переменная для хранения текущего workId и данных бронирования
+        let newClient = null;
+        let currentWorkId = null;
 
-	if (!eventModal || !bookButton) {
-		console.error('Не найдены необходимые элементы: модальное окно или кнопка бронирования');
-		return;
-	}
+        if (!eventModal || !bookButton) {
+            console.error('Не найдены необходимые элементы: модальное окно или кнопка бронирования');
+            return;
+        }
 
-	// Обработчик открытия модального окна
-	eventModal.addEventListener('show.bs.modal', (event) => {
-		const button = event.relatedTarget;
-		if (!button) {
-			console.warn('Событие show.bs.modal вызвано без relatedTarget');
-			return;
-		}
+        // Обработчик открытия модального окна
+        eventModal.addEventListener('show.bs.modal', (event) => {
+            const button = event.relatedTarget;
+            if (!button) {
+                console.warn('Событие show.bs.modal вызвано без relatedTarget');
+                return;
+            }
 
-		// Получаем данные из атрибутов data-*
-		currentWorkId = button.getAttribute('work-id');
-		newClient = button.getAttribute('client-name');
-		const title = button.getAttribute('data-title') || 'Без названия';
-		const coach = button.getAttribute('data-coach') || 'Не указан';
-		const duration = button.getAttribute('data-duration') || 'Не указано';
-		const gym = button.getAttribute('data-gym') || 'Не указан';
-		const description = button.getAttribute('data-description') || '';
+            // Получаем данные из атрибутов data-*
+            currentWorkId = button.getAttribute('work-id');
+            newClient = button.getAttribute('client-name');
+            const title = button.getAttribute('data-title') || 'Без названия';
+            const coach = button.getAttribute('data-coach') || 'Не указан';
+            const duration = button.getAttribute('data-duration') || 'Не указано';
+            const gym = button.getAttribute('data-gym') || 'Не указан';
+            const description = button.getAttribute('data-description') || '';
 
-		// Заполняем элементы модального окна
-		eventModal.querySelector('#modalTitle').textContent = title;
-		eventModal.querySelector('#modalCoach').textContent = coach;
-		eventModal.querySelector('#modalDuration').textContent = duration;
-		eventModal.querySelector('#modalGym').textContent = gym;
-		eventModal.querySelector('#modalDescription').textContent = description;
-	});
+            // Заполняем элементы модального окна
+            eventModal.querySelector('#modalTitle').textContent = title;
+            eventModal.querySelector('#modalCoach').textContent = coach;
+            eventModal.querySelector('#modalDuration').textContent = duration;
+            eventModal.querySelector('#modalGym').textContent = gym;
+            eventModal.querySelector('#modalDescription').textContent = description;
+        });
 
-	// Обработчик клика по кнопке бронирования
-	bookButton.addEventListener('click', () => {
-		if (!currentWorkId) {
-			alert('Ошибка: не выбран тренинг для бронирования.');
-			return;
-		}
+        // Обработчик клика по кнопке бронирования
+        bookButton.addEventListener('click', () => {
+            if (!currentWorkId) {
+                alert('Ошибка: не выбран тренинг для бронирования.');
+                return;
+            }
 
-		$.ajax({
-			url: `http://localhost:5067/Workout/AddClinet/${encodeURIComponent(currentWorkId)}?clientName=${encodeURIComponent(newClient)}`,
-			type: 'POST',
-			success: () => {
-				const modalInstance = bootstrap.Modal.getInstance(eventModal);
-				if (modalInstance) {
-					modalInstance.hide();
-				}
-				alert('Бронирование успешно!');
-			},
-			error: (jqXHR) => {
-				alert(`Ошибка бронирования: ${jqXHR.responseText || jqXHR.statusText}`);
-			}
-		});
+            $.ajax({
+                url: `http://localhost:5067/Workout/AddClinet/${encodeURIComponent(currentWorkId)}?clientName=${encodeURIComponent(newClient)}`,
+                type: 'POST',
+                success: () => {
+                    const modalInstance = bootstrap.Modal.getInstance(eventModal);
+                    if (modalInstance) {
+                        modalInstance.hide();
+                    }
+                    alert('Бронирование успешно!');
+                },
+                error: (jqXHR) => {
+                    alert(`Ошибка бронирования: ${jqXHR.responseText || jqXHR.statusText}`);
+                }
+            });
 
-	});
-        
+        });
+
     });
+}
 
 
