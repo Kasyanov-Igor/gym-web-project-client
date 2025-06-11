@@ -25,9 +25,23 @@ if (!window.__myAppHandlersInitialized) {
                         $("#successMessage").hide();
                     }
                 },
-                error: function (jqXHR) {
-                    console.error("Ошибка AJAX Registration:", jqXHR.statusText);
-                    $("#errorMessage").text("Произошла ошибка. Попробуйте позже.").show();
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error(`Ошибка AJAX Registration: ${jqXHR.statusText}`, jqXHR.responseText);
+                    // Улучшенная обработка ошибок, как в предыдущем примере
+                    var errorMessage = "Что-то пошло не так. Попробуйте снова позже.";
+                    if (jqXHR.responseText) {
+                        try {
+                            var errorResponse = JSON.parse(jqXHR.responseText);
+                            if (errorResponse.message) {
+                                errorMessage = errorResponse.message;
+                            } else {
+                                errorMessage = jqXHR.responseText;
+                            }
+                        } catch (e) {
+                            errorMessage = jqXHR.responseText;
+                        }
+                    }
+                    $("#errorMessage").text(errorMessage).show();
                     $("#successMessage").hide();
                 }
             });
@@ -54,15 +68,29 @@ if (!window.__myAppHandlersInitialized) {
                         $("#successMessage").hide();
                     }
                 },
-                error: function (jqXHR) {
-                    console.error("Ошибка AJAX Coach Registration:", jqXHR.statusText);
-                    $("#errorMessage").text("Произошла ошибка. Попробуйте позже.").show();
+                error: function (jqXHR, textStatus, errorThrown)
+                {
+                    console.error(`Ошибка AJAX Registration: ${jqXHR.statusText}`, jqXHR.responseText);
+                    // Улучшенная обработка ошибок, как в предыдущем примере
+                    var errorMessage = "Что-то пошло не так. Попробуйте снова позже.";
+                    if (jqXHR.responseText) {
+                        try {
+                            var errorResponse = JSON.parse(jqXHR.responseText);
+                            if (errorResponse.message) {
+                                errorMessage = errorResponse.message;
+                            } else {
+                                errorMessage = jqXHR.responseText;
+                            }
+                        } catch (e) {
+                            errorMessage = jqXHR.responseText;
+                        }
+                    }
+                    $("#errorMessage").text(errorMessage).show();
                     $("#successMessage").hide();
                 }
             });
         });
 
-        // Обработчик для формы слотов
         $("#slotForm").one("submit", function (event) {
             event.preventDefault();
             console.log("Submit slotForm");
@@ -78,18 +106,38 @@ if (!window.__myAppHandlersInitialized) {
                     if (response.success) {
                         $("#successMessage").text(response.message).show();
                         $("#errorMessage").hide();
+
                     } else {
                         $("#errorMessage").text(response.message).show();
                         $("#successMessage").hide();
+
+                        setTimeout(function () {
+                            location.reload();
+                        }, 2000);
                     }
                 },
-                error: function (jqXHR) {
-                    console.error("Ошибка AJAX Workout:", jqXHR.statusText);
-                    $("#errorMessage").text("Произошла ошибка. Попробуйте позже.").show();
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error(`Ошибка AJAX Registration: ${jqXHR.statusText}`, jqXHR.responseText);
+                    // Улучшенная обработка ошибок, как в предыдущем примере
+                    var errorMessage = "Что-то пошло не так. Попробуйте снова позже.";
+                    if (jqXHR.responseText) {
+                        try {
+                            var errorResponse = JSON.parse(jqXHR.responseText);
+                            if (errorResponse.message) {
+                                errorMessage = errorResponse.message;
+                            } else {
+                                errorMessage = jqXHR.responseText;
+                            }
+                        } catch (e) {
+                            errorMessage = jqXHR.responseText;
+                        }
+                    }
+                    $("#errorMessage").text(errorMessage).show();
                     $("#successMessage").hide();
                 }
             });
         });
+
         const eventModal = document.getElementById('modelRecord');
         const bookButton = document.getElementById('bookButton');
 
@@ -143,6 +191,7 @@ if (!window.__myAppHandlersInitialized) {
                         modalInstance.hide();
                     }
                     alert('Бронирование успешно!');
+                    location.reload();
                 },
                 error: (jqXHR) => {
                     alert(`Ошибка бронирования: ${jqXHR.responseText || jqXHR.statusText}`);
