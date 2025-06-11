@@ -5,7 +5,7 @@ VisualStudioVersion = 17.13.35931.197
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GymProjectClient", "GymProjectClient.csproj", "{56B35A26-40C0-4AC5-AC80-DD980E49744D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gym-project-business-logic", "..\gym-web-project\gym-project-business-logic\gym-project-business-logic.csproj", "{D7A72355-5605-9730-4777-9A3E2373A80E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "gym-project-business-logic", "business-logic\gym-project-business-logic\gym-project-business-logic.csproj", "{EF1FDD62-BE26-41EC-BE39-447CDC7288B1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{56B35A26-40C0-4AC5-AC80-DD980E49744D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56B35A26-40C0-4AC5-AC80-DD980E49744D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56B35A26-40C0-4AC5-AC80-DD980E49744D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D7A72355-5605-9730-4777-9A3E2373A80E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D7A72355-5605-9730-4777-9A3E2373A80E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D7A72355-5605-9730-4777-9A3E2373A80E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D7A72355-5605-9730-4777-9A3E2373A80E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF1FDD62-BE26-41EC-BE39-447CDC7288B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF1FDD62-BE26-41EC-BE39-447CDC7288B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF1FDD62-BE26-41EC-BE39-447CDC7288B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF1FDD62-BE26-41EC-BE39-447CDC7288B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
