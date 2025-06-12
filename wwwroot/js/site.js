@@ -5,7 +5,7 @@ if (!window.__myAppHandlersInitialized) {
 
     $(document).ready(function () {
         // Обработчик для формы регистрации клиента
-        $("#registrationForm").one("submit", function (event) {
+        $("#registrationForm").on("submit", function (event) {
             event.preventDefault();
             console.log("Submit registrationForm");
 
@@ -48,7 +48,7 @@ if (!window.__myAppHandlersInitialized) {
         });
 
         // Обработчик для формы регистрации тренера
-        $("#registrationFormCoach").one("submit", function (event) {
+        $("#registrationFormCoach").on("submit", function (event) {
             event.preventDefault();
             console.log("Submit registrationFormCoach");
 
