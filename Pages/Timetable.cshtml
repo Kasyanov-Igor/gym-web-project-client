@@ -1,0 +1,166 @@
+﻿@page
+@using System.Globalization
+@model GymProjectClient.Pages.TimetableModel
+@{
+}
+@*
+<h1>@Model.Client.Name ТРЕНИРОВКИ</h1>
+
+<div class="form-group mb-3">
+	<form method="post">
+		<select asp-for="SelectedCoachId" asp-items="Model.Coaches" onchange="this.form.submit()">
+			<option value="">-- Выберите тренера --</option>
+		</select>
+		<select asp-for="Date" asp-items="Model.DateOptions" onchange="this.form.submit()">
+			<option value="">-- Выберите дату --</option>
+		</select>
+	</form>
+</div>
+
+<div>
+	<table class="bg-light w-100">
+		<thead>
+			<tr>
+				<th>Время / Дата</th>
+				@for (int i = 0; i < 7; i++)
+				{
+					var date = Model.Date.AddDays(i);
+					<th>
+						@date.ToString("dd MMMM", new CultureInfo("ru-RU"))<br />
+						@date.ToString("dddd", new CultureInfo("ru-RU"))
+					</th>
+				}
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>11:00</td>
+				@for (int i = 0; i < 7; i++)
+				{
+					var currentDate = Model.Date.AddDays(i);
+					var slotTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 11, 0, 0);
+					<td class="time-slot">
+						<div class="availability-input">
+							@if (Model.Workouts != null)
+							{
+								foreach (var work in Model.Workouts)
+								{
+									if (work.BookingTime == slotTime && work.ClientName == Model.Client.Name)
+									{
+										<div class="card shadow" work-id="@work.Id" client-name="@Model.Client.Name"
+											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+											<div class="card-body">
+												<h5 class="card-title">@work.Title</h5>
+												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
+												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+												@(work.Places > 1 ? $"Свободные места: {work.Places}" :
+																			work.Places == 1 ? "Индивидуальная тренировка" : "Свободных мест нет")
+											</div>
+										</div>
+									}
+								}
+							}
+						</div>
+					</td>
+				}
+			</tr>
+			<tr>
+				<td>14:00</td>
+				@for (int i = 0; i < 7; i++)
+				{
+					var currentDate = Model.Date.AddDays(i);
+					var slotTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 14, 0, 0);
+					<td class="time-slot">
+						<div class="availability-input">
+							@if (Model.Workouts != null)
+							{
+								foreach (var work in Model.Workouts)
+								{
+									if (work.BookingTime == slotTime && work.ClientName == Model.Client.Name)
+									{
+										<div class="card shadow" work-id="@work.Id" client-name="@Model.Client.Name"
+											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+											<div class="card-body">
+												<h5 class="card-title">@work.Title</h5>
+												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
+												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+												@(work.Places > 1 ? $"Свободные места: {work.Places}" :
+																			work.Places == 1 ? "Индивидуальная тренировка" : "Свободных мест нет")
+											</div>
+										</div>
+									}
+								}
+							}
+						</div>
+					</td>
+				}
+			</tr>
+			<tr>
+				<td>17:00</td>
+				@for (int i = 0; i < 7; i++)
+				{
+					var currentDate = Model.Date.AddDays(i);
+					var slotTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 17, 0, 0);
+					<td class="time-slot">
+						<div class="availability-input">
+							@if (Model.Workouts != null)
+							{
+								foreach (var work in Model.Workouts)
+								{
+									if (work.BookingTime == slotTime && work.ClientName == Model.Client.Name)
+									{
+										<div class="card shadow" work-id="@work.Id" client-name="@Model.Client.Name"
+											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+											<div class="card-body">
+												<h5 class="card-title">@work.Title</h5>
+												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
+												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+												@(work.Places > 1 ? $"Свободные места: {work.Places}" :
+																			work.Places == 1 ? "Индивидуальная тренировка" : "Свободных мест нет")
+											</div>
+										</div>
+									}
+								}
+							}
+						</div>
+					</td>
+				}
+			</tr>
+			<tr>
+				<td>19:00</td>
+				@for (int i = 0; i < 7; i++)
+				{
+					var currentDate = Model.Date.AddDays(i);
+					var slotTime = new DateTime(currentDate.Year, currentDate.Month, currentDate.Day, 19, 0, 0);
+					<td class="time-slot">
+						<div class="availability-input">
+							@if (Model.Workouts != null)
+							{
+								foreach (var work in Model.Workouts)
+								{
+									if (work.BookingTime == slotTime && work.ClientName == Model.Client.Name)
+									{
+										<div class="card shadow" work-id="@work.Id" client-name="@Model.Client.Name"
+											 data-title="@work.Title" data-coach="@work.NameCoach" data-duration="@work.DurationMinutes" data-gym="@work.GymId" data-description="@work.Description">
+											<div class="card-body">
+												<h5 class="card-title">@work.Title</h5>
+												<h6 class="card-subtitle mb-2 text-muted">@work.NameCoach</h6>
+												<p class="card-text mb-1"><strong>Длительность:</strong> @work.DurationMinutes мин.</p>
+												<p class="card-text mb-1"><strong>Зал №:</strong> @work.GymId</p>
+												@(work.Places > 1 ? $"Свободные места: {work.Places}" :
+																			work.Places == 1 ? "Индивидуальная тренировка" : "Свободных мест нет")
+											</div>
+										</div>
+									}
+								}
+							}
+						</div>
+					</td>
+				}
+			</tr>
+		</tbody>
+	</table>
+</div> *@

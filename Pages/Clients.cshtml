@@ -15,31 +15,26 @@
 			</div>
 
 			<div class="d-flex align-items-center h-custom-2 px-5 ms-xl-4 mt-5 pt-5 pt-xl-0 mt-xl-n5">
-				<form id="loginFormCoach" method="post">
+				<form id="loginFormClient">
 
 					<h3 class="mb-4">Вход в личный кабинет </h3>
 
-					@if (!string.IsNullOrEmpty(Model.ErrorMessage))
-					{
-						<div class="alert alert-danger" role="alert">
-							@Model.ErrorMessage
-						</div>
-					}
+					<div id="loginErrorMessage" class="error-message text-danger mb-3" style="display: none;"></div>
+					<div id="loginSuccessMessage" class="success-message text-success mb-3" style="display: none;"></div>
 
-					<div data-mdb-input-init class="form-outline mb-4">
-						<input type="text" id="form2Example18" asp-for="Login" class="form-control form-control-lg" />
-						<label class="form-label" for="form2Example18">Логин</label>
-						<span asp-validation-for="Login" class="text-danger"></span>
+					<div class="mb-3">
+						<label for="login" class="form-label">Логин</label>
+						<input type="text" class="form-control" id="login" name="Login" required>
+						<div id="loginEmailError" class="error-message text-danger"></div>
 					</div>
 
-					<div data-mdb-input-init class="form-outline mb-4">
-						<input type="password" id="form2Example28" asp-for="Password" class="form-control form-control-lg" />
-						<label class="form-label" for="form2Example28">Пароль</label>
-						<span asp-validation-for="Password" class="text-danger"></span>
+					<div class="mb-3">
+						<label for="loginPassword" class="form-label">Пароль</label>
+						<input type="password" class="form-control" id="loginPassword" name="Password" required>
+						<div id="loginPasswordError" class="error-message text-danger"></div>
 					</div>
-
 					<div class="pt-1 mb-4">
-						<button data-mdb-button-init data-mdb-ripple-init type="submit" id="loginCouch" class="btn btn-danger">Войти</button>
+						<button type="submit" id="loginCouch" class="btn btn-danger">Войти</button>
 					</div>
 					<p>У вас нет аккаунта? <a href="#!" data-bs-toggle="modal" data-bs-target="#registrationModal" class="link-info">Зарегистрироваться здесь</a></p>
 				</form>
@@ -126,6 +121,49 @@
 </div>
 
 @inject Microsoft.AspNetCore.Antiforgery.IAntiforgery Xsrf
+
+
+<script>
+			$(document).ready(function() {
+		$('#loginFormClient').on('submit', function(event) {
+			event.preventDefault(); // Предотвращаем стандартную отправку формы
+
+			var formData = $(this).serialize(); // Собираем данные формы
+
+			$.ajax({
+				url: 'http://localhost:5067/Client/login', // Адрес контроллера и метода для авторизации
+				method: 'POST',
+				dataType: 'json',
+				contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+				data: formData,
+				success: function(response) {
+				if (response.success) {
+					if (response.token) {
+						sessionStorage.setItem('authToken', response.token);
+					}
+
+					$('#loginSuccessMessage').text(response.message).show();
+					$('#loginModal').modal('hide'); // Закрываем модальное окно
+
+					@RedirectToPage("/Timetable");
+				} else {
+					$('#loginErrorMessage').text(response.message).show();
+				}
+			},
+				error: function(jqXHR, textStatus, errorThrown) {
+				console.error(`Ошибка AJAX: ${jqXHR.statusText}`);
+				$("#errorMessage").text("Что-то пошло не так. Попробуйте снова позже.").show();
+			}
+			});
+		});
+	});
+	</script> 
+
+
+
+
+
+
 
 @functions {
 

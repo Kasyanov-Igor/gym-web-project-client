@@ -4,6 +4,42 @@ if (!window.__myAppHandlersInitialized) {
     window.__myAppHandlersInitialized = true;
 
     $(document).ready(function () {
+        $("#loginFormClient").on("submit", function (event) {
+            event.preventDefault();
+
+            var formData = $(this).serialize();
+
+            $.ajax({
+                url: 'http://localhost:5067/Client/login', // Адрес контроллера и метода для авторизации
+                method: 'POST',
+                dataType: 'json',
+                contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+                data: formData,
+                success: function (response) {
+                    console.log('Ответ сервера:', response);
+
+                    if (response.success) {
+                        if (response.token) {
+                            sessionStorage.setItem('authToken', response.token);
+                            console.log('Токен сохранён в sessionStorage');
+                        }
+
+                        $('#loginSuccessMessage').text(response.message).show();
+                        $('#loginModal').modal('hide');
+
+                        // Редирект, если нужно
+                        window.location.href = '/Timetable';
+                    } else {
+                        $('#loginErrorMessage').text(response.message).show();
+                    }
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.error(`Ошибка AJAX: ${jqXHR.statusText}`, jqXHR.responseText);
+                    $("#errorMessage").text("Что-то пошло не так. Попробуйте снова позже.").show();
+                }
+            });
+        });
+
         // Обработчик для формы регистрации клиента
         $("#registrationForm").on("submit", function (event) {
             event.preventDefault();
@@ -68,8 +104,7 @@ if (!window.__myAppHandlersInitialized) {
                         $("#successMessage").hide();
                     }
                 },
-                error: function (jqXHR, textStatus, errorThrown)
-                {
+                error: function (jqXHR, textStatus, errorThrown) {
                     console.error(`Ошибка AJAX Registration: ${jqXHR.statusText}`, jqXHR.responseText);
                     // Улучшенная обработка ошибок, как в предыдущем примере
                     var errorMessage = "Что-то пошло не так. Попробуйте снова позже.";
@@ -200,6 +235,9 @@ if (!window.__myAppHandlersInitialized) {
 
         });
 
+        window.sessionStorageSet = (key, value) => {
+            sessionStorage.setItem(key, value);
+        };
     });
 }
 
